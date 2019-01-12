@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Migi</string>
+    <string name="activity_login.txt.username">Usuario</string>
+    <string name="activity_login.txt.password">Contraseña</string>
+    <string name="activity_login.txt.connect">Conectarse</string>
 </resources>
