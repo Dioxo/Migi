@@ -1,9 +1,11 @@
- package dioxo.migi;
+ package dioxo.migi.Authentication;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class LoginActivity extends AppCompatActivity {
+import dioxo.migi.R;
+
+ public class AuthenticationActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
