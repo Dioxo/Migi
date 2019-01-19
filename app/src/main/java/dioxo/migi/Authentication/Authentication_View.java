@@ -11,5 +11,6 @@ public interface Authentication_View {
     void showProgressBar();
     void hideProgressBar();
 
+    void loginError(String error);
 
 }

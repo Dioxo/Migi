@@ -2,10 +2,12 @@ package dioxo.migi.Authentication;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 import butterknife.BindView;
@@ -35,6 +37,7 @@ public class AuthenticationActivity extends AppCompatActivity implements Authent
 
         presenter = new Authentication_Presenter_Impl(this);
         presenter.onCreate();
+        hideProgressBar();
     }
 
     @Override
@@ -56,6 +59,8 @@ public class AuthenticationActivity extends AppCompatActivity implements Authent
     }
 
     public void goToNextPage() {
+        Log.e("Login", "Success");
+
         //Intent intent = new Intent(this, otraclasse.class);
         //startActivity(intent);
     }
@@ -68,11 +73,22 @@ public class AuthenticationActivity extends AppCompatActivity implements Authent
     @Override
     public void hideProgressBar() {
         progressBar.setVisibility(View.GONE);
+    }
 
+    @Override
+    public void loginError(String error) {
+        effacerText();
+        edTxtPassword.setError(error);
     }
 
     @OnClick(R.id.btnLogin)
     public void onViewClicked() {
         presenter.confirmerMDP(edTxtUser.getText().toString(), edTxtPassword.getText().toString());
+        effacerText();
+    }
+
+    private void effacerText(){
+        edTxtPassword.setText("");
+        edTxtUser.setText("");
     }
 }

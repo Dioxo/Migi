@@ -18,6 +18,11 @@ public class Authentication_Presenter_Impl implements Authentication_Presenter {
     }
 
     public void confirmerMDP(String email, String mdp) {
+        if(view != null){
+            view.showProgressBar();
+            view.disableInputs();
+        }
+
         repository.confirmerMDP(email,mdp);
     }
 
@@ -35,6 +40,22 @@ public class Authentication_Presenter_Impl implements Authentication_Presenter {
 
     @Subscribe
     public void onEventMainThread(Authentication_Event authenticationEvent) {
+        switch (authenticationEvent.getEventType()){
+
+            case Authentication_Event.AUTHENTICATION_OKAY:
+                if(view != null) {
+                    view.goToNextPage();
+                }
+                break;
+
+            case Authentication_Event.AUTHENTICATION_ERROR:
+                if(view != null){
+                    view.loginError(authenticationEvent.getMessage());
+                    view.enableInputs();
+                    view.hideProgressBar();
+                }
+                break;
+        }
     }
 
 }

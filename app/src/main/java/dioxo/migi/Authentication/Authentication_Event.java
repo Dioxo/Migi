@@ -7,6 +7,12 @@ public class Authentication_Event {
     public static final  int AUTHENTICATION_ERROR = 1;
 
     private int eventType;
+    private String message;
+
+    public Authentication_Event(int eventType) {
+        this.eventType = eventType;
+    }
+
 
     public void setEventType(int eventType) {
     }
@@ -15,8 +21,11 @@ public class Authentication_Event {
         return this.eventType;
     }
 
-    public Authentication_Event(int eventType) {
-        this.eventType = eventType;
+    public String getMessage() {
+        return message;
     }
 
+    public void setMessage(String message) {
+        this.message = message;
+    }
 }

@@ -25,5 +25,5 @@ public class GreenRobotEventBus implements EventBus {
 
     public void post(Object event){
         eventBus.post(event);
-    } 
+    }
 }
