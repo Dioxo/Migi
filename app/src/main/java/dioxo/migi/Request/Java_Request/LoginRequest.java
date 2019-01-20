@@ -1,4 +1,4 @@
-package dioxo.migi.Request;
+package dioxo.migi.Request.Java_Request;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -9,14 +9,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 import androidx.annotation.Nullable;
+import dioxo.migi.Constantes;
 
 public class LoginRequest extends StringRequest {
 
-    private static final String route = "";
+    private static final String route = Constantes.LOGIN_ROUTE;
     private Map<String, String > parametres;
 
-    public LoginRequest(String email, String password, Response.Listener<String> listener){
-        super(Method.POST,route,listener,null);
+    public LoginRequest(String email, String password, Response.Listener<String> listener,Response.ErrorListener error){
+        super(Method.POST,route,listener,error);
 
         parametres = new HashMap<>();
         parametres.put("email",email);
