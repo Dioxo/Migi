@@ -13,8 +13,14 @@ public class Authentication_Event {
         this.eventType = eventType;
     }
 
+    public Authentication_Event(int eventType, String message) {
+        this.eventType = eventType;
+        this.message = message;
+    }
+
 
     public void setEventType(int eventType) {
+        this.eventType = eventType;
     }
 
     public int getEventType() {
@@ -27,5 +33,13 @@ public class Authentication_Event {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    @Override
+    public String toString() {
+        return "Authentication_Event{" +
+                "eventType=" + eventType +
+                ", message='" + message + '\'' +
+                '}';
     }
 }
