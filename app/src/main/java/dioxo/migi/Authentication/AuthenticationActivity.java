@@ -33,8 +33,7 @@ public class AuthenticationActivity extends AppCompatActivity implements Authent
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
-
-
+        
         presenter = new Authentication_Presenter_Impl(this);
         presenter.onCreate();
         hideProgressBar();
