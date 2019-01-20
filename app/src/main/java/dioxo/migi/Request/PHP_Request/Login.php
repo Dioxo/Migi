@@ -14,7 +14,7 @@ if($result){
     if(isset($mdpBDD)){ 
         echo json_encode($mdpBDD);    
     }else{
-        $error = ['Error'=>'User not Found'];
+        $error = ['Error'=>'Password or Email incorrect'];
         echo json_encode($error);
     }
     
