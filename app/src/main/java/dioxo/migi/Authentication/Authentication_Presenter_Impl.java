@@ -44,6 +44,8 @@ public class Authentication_Presenter_Impl implements Authentication_Presenter {
 
             case Authentication_Event.AUTHENTICATION_OKAY:
                 if(view != null) {
+                    view.enableInputs();
+                    view.hideProgressBar();
                     view.goToNextPage();
                 }
                 break;
