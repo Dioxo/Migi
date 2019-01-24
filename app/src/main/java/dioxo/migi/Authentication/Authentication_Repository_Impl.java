@@ -49,7 +49,7 @@ public class Authentication_Repository_Impl implements Authentication_Repository
                     }else{
                         Log.i("Login","error");
                         event = new  Authentication_Event(Authentication_Event.AUTHENTICATION_ERROR,
-                                                                                password);
+                                Authentication_Event.AUTHENTICATION_ERROR_MESSAGE );
                     }
                     Log.i("Login" , "Event " +  event.toString());
                     eventBus.post(event);
@@ -65,7 +65,11 @@ public class Authentication_Repository_Impl implements Authentication_Repository
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.e("Login","Error : " + error);
-            }
+                event = new  Authentication_Event(Authentication_Event.AUTHENTICATION_ERROR,
+                        Authentication_Event.AUTHENTICATION_ERROR_MESSAGE);
+                eventBus.post(event);
+
+        }
         };
 
         LoginRequest loginRequest = new LoginRequest(email,response,errorListener);
