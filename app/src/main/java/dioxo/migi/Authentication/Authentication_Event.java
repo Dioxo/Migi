@@ -5,6 +5,7 @@ public class Authentication_Event {
     public static final int AUTHENTICATION_OKAY = 0;
 
     public static final  int AUTHENTICATION_ERROR = 1;
+    public static final String AUTHENTICATION_ERROR_MESSAGE = "Usuario o contraseña incorrecta";
 
     private int eventType;
     private String message;
