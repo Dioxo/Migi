@@ -68,7 +68,7 @@ public class Authentication_Repository_Impl implements Authentication_Repository
             }
         };
 
-        LoginRequest loginRequest = new LoginRequest(email,mdp,response,errorListener);
+        LoginRequest loginRequest = new LoginRequest(email,response,errorListener);
         RequestQueue request = Volley.newRequestQueue(ApplicationContextProvider.getContext());
 
         request.add(loginRequest);
