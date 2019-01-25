@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_liste_taches"
+            android:icon="@drawable/liste"
+            android:title="@string/nav_header_liste_taches" />
+        <item
+            android:id="@+id/nav_reviser"
+            android:icon="@drawable/reviser"
+            android:title="@string/nav_header_reviser" />
+        <item
+            android:id="@+id/nav_notes"
+            android:icon="@drawable/notes"
+            android:title="@string/nav_header_notes" />
+        <item
+            android:id="@+id/nav_dossier"
+            android:icon="@drawable/dossier"
+            android:title="@string/nav_header_dossier" />
+        <item
+            android:id="@+id/nav_corbeille"
+            android:icon="@drawable/corbeille"
+            android:title="@string/nav_header_corbeille" />
+    </group>
+
+
+</menu>

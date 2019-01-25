@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import dioxo.migi.NavigationDrawer.NavigationDrawer;
 import dioxo.migi.R;
 
 public class AuthenticationActivity extends AppCompatActivity implements Authentication_View {
@@ -59,9 +60,8 @@ public class AuthenticationActivity extends AppCompatActivity implements Authent
 
     public void goToNextPage() {
         Log.e("Login", "Success");
-
-        //Intent intent = new Intent(this, otraclasse.class);
-        //startActivity(intent);
+        Intent intent = new Intent(this, NavigationDrawer.class);
+        startActivity(intent);
     }
 
     @Override
