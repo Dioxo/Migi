@@ -1,5 +1,6 @@
 package dioxo.migi.NavigationDrawer;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -16,10 +17,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import dioxo.migi.Objets.Objs.CardNote;
+import dioxo.migi.Objets.Objs.Tag;
 import dioxo.migi.R;
 
 import android.view.Menu;
 import android.view.MenuItem;
+
+import java.util.ArrayList;
 
 public class NavigationDrawer extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -64,9 +69,27 @@ public class NavigationDrawer extends AppCompatActivity
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         // specify an adapter (see also next example)
-        String[] data = {"Hello", "World","qqq"};
-        mAdapter = new MyAdapter(data);
+        ArrayList<CardNote> notes = getNotes();
+        mAdapter = new MyAdapter(notes);
         mRecyclerView.setAdapter(mAdapter);
+    }
+
+    private ArrayList<CardNote> getNotes() {
+        ArrayList<Tag> tags = new ArrayList<>();
+        tags.add(new Tag("BDD",R.color.tag_yellow));
+        tags.add(new Tag("TP",R.color.tag_purple));
+        tags.add(new Tag("Livre",R.color.tag_gray));
+
+        ArrayList<CardNote> notes = new ArrayList<>();
+        notes.add(new CardNote("Normalisation","Le but essentiel de la normalisation est d'éviter les anomalies transactionnelles pouvant découler d'une mauvaise modélisation des données et ainsi éviter un certain nombre de problèmes potentiels tels que les anomalies",
+                tags ));
+        notes.add(new CardNote("Normalisation","Le but essentiel de la normalisation est d'éviter les anomalies transactionnelles pouvant découler d'une mauvaise modélisation des données et ainsi éviter un certain nombre de problèmes potentiels tels que les anomalies",
+                tags ));
+        notes.add(new CardNote("Normalisation","Le but essentiel de la normalisation est d'éviter les anomalies transactionnelles pouvant découler d'une mauvaise modélisation des données et ainsi éviter un certain nombre de problèmes potentiels tels que les anomalies",
+                tags ));
+
+        return notes;
+
     }
 
     @Override

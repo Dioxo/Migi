@@ -12,7 +12,7 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import dioxo.migi.Request.Java_Request.LoginRequest;
+import dioxo.migi.Objets.Java_Request.LoginRequest;
 import dioxo.migi.libs.ApplicationContextProvider;
 import dioxo.migi.libs.EventBus;
 import dioxo.migi.libs.GreenRobotEventBus;

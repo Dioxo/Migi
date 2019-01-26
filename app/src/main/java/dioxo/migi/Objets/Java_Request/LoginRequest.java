@@ -1,14 +1,12 @@
-package dioxo.migi.Request.Java_Request;
+package dioxo.migi.Objets.Java_Request;
 
 import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import androidx.annotation.Nullable;
 import dioxo.migi.Constantes;
 
 public class LoginRequest extends StringRequest {
