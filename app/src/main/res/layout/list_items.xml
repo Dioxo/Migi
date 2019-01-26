@@ -1,0 +1,98 @@
+<androidx.cardview.widget.CardView android:id="@+id/my_card"
+    android:scrollbars="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="250dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp"
+    android:layout_marginTop="6dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/txtTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Normalisation"
+            android:textColor="@color/secondaryTextColor"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="90dp"
+                android:layout_height="35dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/tag_form"
+                android:backgroundTint="@color/tag_purple"
+                android:text="BDD" />
+
+            <Button
+                android:layout_width="90dp"
+                android:layout_height="35dp"
+                android:background="@drawable/tag_form"
+                android:backgroundTint="@color/tag_yellow"
+                android:layout_marginEnd="8dp"
+                android:text="TP"/>
+
+            <Button
+                android:layout_width="90dp"
+                android:layout_height="35dp"
+                android:background="@drawable/tag_form"
+                android:backgroundTint="@color/tag_gray"
+                android:layout_marginEnd="8dp"
+                android:text="Livre" />
+
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:maxLines="6"
+            android:text="Le but essentiel de la normalisation est d'éviter les anomalies transactionnelles pouvant découler d'une mauvaise modélisation des données et ainsi éviter un certain nombre de problèmes potentiels tels que les anomalies"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="90dp"
+                android:layout_height="35dp"
+                android:background="#FFFFFF"
+                android:textColor="#6202EE"
+                android:text="Archiver"/>
+
+            <Button
+                android:layout_width="90dp"
+                android:layout_height="35dp"
+                android:background="#FFFFFF"
+                android:textColor="#6202EE"
+                android:text="Reviser"/>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+
+</androidx.cardview.widget.CardView>
+
