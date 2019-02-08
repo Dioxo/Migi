@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 public class CardNote {
     private String title,description;
-    private ArrayList<Tag> tags;
+    private ListTag tags;
 
-    public CardNote(String title, String description, ArrayList<Tag> tags) {
+    public CardNote(String title, String description, ListTag tags) {
         this.title = title;
         this.description = description;
         this.tags = tags;
@@ -28,12 +28,11 @@ public class CardNote {
         this.description = description;
     }
 
-    public ArrayList<Tag> getTags() {
+    public ListTag getTags() {
         return tags;
     }
 
-    public void setTags(ArrayList<Tag> tags) {
+    public void setTags(ListTag tags) {
         this.tags = tags;
     }
-
 }
