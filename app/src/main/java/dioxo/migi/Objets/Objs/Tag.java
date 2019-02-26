@@ -2,7 +2,9 @@ package dioxo.migi.Objets.Objs;
 
 import android.graphics.Color;
 
-public class Tag {
+import java.lang.annotation.Annotation;
+
+public class Tag implements Deprecated{
     private String text;
     private int color;
 
@@ -28,6 +30,9 @@ public class Tag {
     }
 
 
-
+    @Override
+    public Class<? extends Annotation> annotationType() {
+        return null;
+    }
 }
 

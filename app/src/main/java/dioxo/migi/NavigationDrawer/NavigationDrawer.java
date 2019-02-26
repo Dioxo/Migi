@@ -18,6 +18,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import dioxo.migi.Objets.Objs.CardNote;
+import dioxo.migi.Objets.Objs.ListTag;
+import dioxo.migi.Objets.Objs.Node;
 import dioxo.migi.Objets.Objs.Tag;
 import dioxo.migi.R;
 
@@ -27,11 +29,19 @@ import android.view.MenuItem;
 import java.util.ArrayList;
 
 public class NavigationDrawer extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener,
+        dioxo.migi.NavigationDrawer.NavigationView {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+    private NavigationPresenter presenter;
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        presenter.onDestroy();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +58,7 @@ public class NavigationDrawer extends AppCompatActivity
                  //       .setAction("Action", null).show();
             }
         });
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -72,15 +83,26 @@ public class NavigationDrawer extends AppCompatActivity
         ArrayList<CardNote> notes = getNotes();
         mAdapter = new MyAdapter(notes);
         mRecyclerView.setAdapter(mAdapter);
+
+
+        //Creation presenter
+        presenter = new NavigationPresenterImpl(this);
+        presenter.onCreate();
+        chercherNotes();
     }
 
     private ArrayList<CardNote> getNotes() {
-        ArrayList<Tag> tags = new ArrayList<>();
+        /*ArrayList<Tag> tags = new ArrayList<>();
         tags.add(new Tag("BDD",R.color.tag_yellow));
         tags.add(new Tag("TP",R.color.tag_purple));
         tags.add(new Tag("Livre",R.color.tag_gray));
-
+        */
         ArrayList<CardNote> notes = new ArrayList<>();
+
+        ListTag tags = new ListTag("BDD", R.color.tag_purple + "");
+        tags.add("TP",R.color.tag_purple + "");
+        tags.add("Livre",R.color.tag_gray + "");
+
         notes.add(new CardNote("Normalisation","Le but essentiel de la normalisation est d'éviter les anomalies transactionnelles pouvant découler d'une mauvaise modélisation des données et ainsi éviter un certain nombre de problèmes potentiels tels que les anomalies",
                 tags ));
         notes.add(new CardNote("Normalisation","Le but essentiel de la normalisation est d'éviter les anomalies transactionnelles pouvant découler d'une mauvaise modélisation des données et ainsi éviter un certain nombre de problèmes potentiels tels que les anomalies",
@@ -148,5 +170,20 @@ public class NavigationDrawer extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void chercherNotes() {
+        presenter.chercherNotes();
+    }
+
+    @Override
+    public void afficherNotes() {
+
+    }
+
+    @Override
+    public void afficherBackgroundVide() {
+
     }
 }

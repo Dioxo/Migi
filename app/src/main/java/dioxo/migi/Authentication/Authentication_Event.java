@@ -22,11 +22,6 @@ public class Authentication_Event {
         this.message = message;
     }
 
-
-    public void setEventType(int eventType) {
-        this.eventType = eventType;
-    }
-
     public int getEventType() {
         return this.eventType;
     }

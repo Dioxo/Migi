@@ -67,9 +67,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         * */
         holder.title.setText(notes.get(position).getTitle());
         holder.description.setText(notes.get(position).getDescription());
-        holder.tag1.setText(notes.get(position).getTags().get(0).getText());
-        holder.tag2.setText(notes.get(position).getTags().get(1).getText());
-        holder.tag3.setText(notes.get(position).getTags().get(2).getText());
+        holder.tag1.setText(notes.get(position).getTags().getHead().getText());
+        holder.tag2.setText(notes.get(position).getTags().getHead().getNext().getText());
+        holder.tag3.setText(notes.get(position).getTags().getHead().getNext().getNext().getText());
 
 
 

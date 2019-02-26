@@ -2,6 +2,7 @@ package dioxo.migi.Authentication;
 
 
 
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.android.volley.RequestQueue;
@@ -12,6 +13,7 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import dioxo.migi.Constantes;
 import dioxo.migi.Objets.Java_Request.LoginRequest;
 import dioxo.migi.libs.ApplicationContextProvider;
 import dioxo.migi.libs.EventBus;
@@ -33,32 +35,30 @@ public class Authentication_Repository_Impl implements Authentication_Repository
         Log.i("Login" , "Email : " + email);
         Log.i("Login" , "Password : " + mdp);
 
-        Response.Listener<String> response = new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
+        Response.Listener<String> response = response1 -> {
+            try {
 
-                    JSONObject jsonObject = new JSONObject(response);
-                    Log.i("Login","Response : " + response);
+                JSONObject jsonObject = new JSONObject(response1);
+                Log.i("Login","Response : " + response1);
 
-                    Log.i("Login","JSON mdp : " + jsonObject);
-                    String password = jsonObject.getString("password");
-                    if(password.equals(mdp)){
-                        Log.i("Login","ok");
-                        event = new Authentication_Event(Authentication_Event.AUTHENTICATION_OKAY);
-                    }else{
-                        Log.i("Login","error");
-                        event = new  Authentication_Event(Authentication_Event.AUTHENTICATION_ERROR,
-                                Authentication_Event.AUTHENTICATION_ERROR_MESSAGE );
-                    }
-                    Log.i("Login" , "Event " +  event.toString());
-                    eventBus.post(event);
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                Log.i("Login","JSON mdp : " + jsonObject);
+                String password = jsonObject.getString("password");
+                if(password.equals(mdp)){
+                    storeUser_id(jsonObject.getString("id_user"));
+                    Log.i("Login","ok");
+                    event = new Authentication_Event(Authentication_Event.AUTHENTICATION_OKAY);
+                }else{
+                    Log.i("Login","error");
+                    event = new  Authentication_Event(Authentication_Event.AUTHENTICATION_ERROR,
+                            Authentication_Event.AUTHENTICATION_ERROR_MESSAGE );
                 }
+                Log.i("Login" , "Event " +  event.toString());
+                eventBus.post(event);
 
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
+
         };
 
         Response.ErrorListener errorListener = new Response.ErrorListener() {
@@ -76,6 +76,15 @@ public class Authentication_Repository_Impl implements Authentication_Repository
         RequestQueue request = Volley.newRequestQueue(ApplicationContextProvider.getContext());
 
         request.add(loginRequest);
+    }
+
+    private void storeUser_id(String id_user) {
+        SharedPreferences settings = ApplicationContextProvider.getContext().getSharedPreferences(Constantes.ID_USER, 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putString(Constantes.ID_USER, id_user);
+
+        // Commit the edits!
+        editor.apply();
     }
 
 }

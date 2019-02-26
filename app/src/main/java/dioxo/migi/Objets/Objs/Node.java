@@ -48,6 +48,6 @@ public class Node<T> {
     public String toString() {
         return "Node{" + "text=" + text +  " color =" + color + ", next=" + next + '}';
     }
-        
+
 
 }
