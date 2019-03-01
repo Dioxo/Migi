@@ -22,10 +22,15 @@
         <activity
             android:name=".NavigationDrawer.NavigationDrawer"
             android:label="@string/title_activity_navigation_drawer"
+            android:theme="@style/AppTheme"></activity>
+        <activity
+            android:name=".NoteActivity"
+            android:label="@string/title_activity_note"
+            android:parentActivityName=".NavigationDrawer.NavigationDrawer"
             android:theme="@style/AppTheme">
-
-
-
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="dioxo.migi.NavigationDrawer.NavigationDrawer" />
         </activity>
     </application>
 

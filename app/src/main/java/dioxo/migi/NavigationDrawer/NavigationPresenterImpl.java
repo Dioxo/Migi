@@ -4,6 +4,9 @@ import android.view.View;
 
 import org.greenrobot.eventbus.Subscribe;
 
+import java.util.ArrayList;
+
+import dioxo.migi.Objets.Objs.Note;
 import dioxo.migi.libs.EventBus;
 import dioxo.migi.libs.GreenRobotEventBus;
 
@@ -33,8 +36,10 @@ class NavigationPresenterImpl implements NavigationPresenter {
     public void onEventMainThread(NavigationEvent event) {
         switch (event.getEventType()){
             case NavigationEvent.NOTES_SUCCESS:
+                afficherNotes(event.getNotes());
                 break;
             case NavigationEvent.NOTES_ERROR:
+                afficherBackgroundVide();
                 break;
         }
     }
@@ -45,10 +50,16 @@ class NavigationPresenterImpl implements NavigationPresenter {
     }
 
     @Override
-    public void afficherNotes() {
+    public void afficherNotes(ArrayList<Note> notes) {
         if(view != null){
-            //view.afficherNotes();
+            view.afficherNotes(notes);
         }
+    }
 
+    @Override
+    public void afficherBackgroundVide() {
+        if(view != null){
+            view.afficherBackgroundVide();
+        }
     }
 }

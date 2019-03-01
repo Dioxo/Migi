@@ -16,5 +16,6 @@
     <string name="nav_header_notes">Toutes les notes</string>
     <string name="nav_header_dossier">Dossiers</string>
     <string name="nav_header_corbeille">Corbeille</string>
+    <string name="title_activity_note">NoteActivity</string>
 
 </resources>

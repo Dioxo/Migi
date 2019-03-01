@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import dioxo.migi.Objets.Objs.CardNote;
 import dioxo.migi.Objets.Objs.ListTag;
 import dioxo.migi.Objets.Objs.Node;
+import dioxo.migi.Objets.Objs.Note;
 import dioxo.migi.Objets.Objs.Tag;
 import dioxo.migi.R;
 
@@ -68,21 +69,6 @@ public class NavigationDrawer extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-
-        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerNotes);
-        // use this setting to improve performance if you know that changes
-        // in content do not change the layout size of the RecyclerView
-        mRecyclerView.setHasFixedSize(true);
-
-        // use a linear layout manager
-        mLayoutManager = new LinearLayoutManager(this);
-        mRecyclerView.setLayoutManager(mLayoutManager);
-
-        // specify an adapter (see also next example)
-        ArrayList<CardNote> notes = getNotes();
-        mAdapter = new MyAdapter(notes);
-        mRecyclerView.setAdapter(mAdapter);
 
 
         //Creation presenter
@@ -178,8 +164,20 @@ public class NavigationDrawer extends AppCompatActivity
     }
 
     @Override
-    public void afficherNotes() {
+    public void afficherNotes(ArrayList<Note> notes) {
+        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerNotes);
+        // use this setting to improve performance if you know that changes
+        // in content do not change the layout size of the RecyclerView
+        mRecyclerView.setHasFixedSize(true);
 
+        // use a linear layout manager
+        mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+
+        // specify an adapter (see also next example)
+        //ArrayList<CardNote> notes = getNotes();
+        mAdapter = new MyAdapter(notes);
+        mRecyclerView.setAdapter(mAdapter);
     }
 
     @Override

@@ -1,5 +1,9 @@
 package dioxo.migi.NavigationDrawer;
 
+import java.util.ArrayList;
+
+import dioxo.migi.Objets.Objs.Note;
+
 public interface NavigationPresenter {
     void onCreate();
     void onDestroy();
@@ -8,5 +12,6 @@ public interface NavigationPresenter {
 
 
     void chercherNotes();
-    void afficherNotes();
+    void afficherNotes(ArrayList<Note> notes);
+    void afficherBackgroundVide();
 }

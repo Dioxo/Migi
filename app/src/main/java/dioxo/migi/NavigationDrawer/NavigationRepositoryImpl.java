@@ -17,6 +17,7 @@ import dioxo.migi.Objets.Java_Request.NoteRequest;
 import dioxo.migi.Objets.Objs.Note;
 import dioxo.migi.libs.ApplicationContextProvider;
 import dioxo.migi.libs.EventBus;
+
 import dioxo.migi.libs.GreenRobotEventBus;
 
 class NavigationRepositoryImpl implements NavigationRepository {
@@ -31,20 +32,21 @@ class NavigationRepositoryImpl implements NavigationRepository {
         Log.i("JSON","entró");
 
         Response.Listener<String> responseSuccess = response1 -> {
-
-
             try {
                 JSONArray jsonObject = new JSONArray(response1);
                 ArrayList<Note> notes = fromJson(jsonObject);
                 System.out.println(notes);
 
+                NavigationEvent event = new NavigationEvent(NavigationEvent.NOTES_SUCCESS,notes);
+                eventBus.post(event);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         };
 
         Response.ErrorListener errorListener = error -> {
-            Log.i("JSON", "Error");
+            NavigationEvent event = new NavigationEvent(NavigationEvent.NOTES_ERROR);
+            eventBus.post(event);
         };
 
 
