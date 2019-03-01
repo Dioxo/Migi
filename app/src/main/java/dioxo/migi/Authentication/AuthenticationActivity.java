@@ -1,6 +1,7 @@
 package dioxo.migi.Authentication;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,6 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import dioxo.migi.Constantes;
+import dioxo.migi.NavigationDrawer.NavigationDrawer;
 import dioxo.migi.R;
 
 public class AuthenticationActivity extends AppCompatActivity implements Authentication_View {
@@ -37,6 +40,9 @@ public class AuthenticationActivity extends AppCompatActivity implements Authent
         presenter = new Authentication_Presenter_Impl(this);
         presenter.onCreate();
         hideProgressBar();
+
+        edTxtUser.setText("a@a.com");
+        edTxtPassword.setText("123456");
     }
 
     @Override
@@ -59,9 +65,13 @@ public class AuthenticationActivity extends AppCompatActivity implements Authent
 
     public void goToNextPage() {
         Log.e("Login", "Success");
+        /*SharedPreferences settings = getSharedPreferences(Constantes.ID_USER, 0);
+        String id_user = settings.getString(Constantes.ID_USER,null);
+        Log.e("Login", id_user + " Id user");*/
 
-        //Intent intent = new Intent(this, otraclasse.class);
-        //startActivity(intent);
+
+        Intent intent = new Intent(this, NavigationDrawer.class);
+        startActivity(intent);
     }
 
     @Override

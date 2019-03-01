@@ -10,5 +10,9 @@
     <color name="secondaryLightColor">#ffdd4b</color>
     <color name="secondaryDarkColor">#c67c00</color>
     <color name="primaryTextColor">#ffffff</color>
-    <color name="secondaryTextColor">#000000</color>
+    <color name="secondaryTextColor">#DD000000</color>
+    <color name="tag_purple">#64B39DDB</color>
+    <color name="tag_yellow">#FFF9C4</color>
+    <color name="tag_gray">#1E000000</color>
+    <color name="fond_ecran">#FAFAFA</color>
 </resources>

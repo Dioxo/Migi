@@ -1,11 +1,14 @@
 package dioxo.migi.Authentication;
 
 
+import dioxo.migi.R;
+import dioxo.migi.libs.ApplicationContextProvider;
+
 public class Authentication_Event {
     public static final int AUTHENTICATION_OKAY = 0;
 
     public static final  int AUTHENTICATION_ERROR = 1;
-    public static final String AUTHENTICATION_ERROR_MESSAGE = "Usuario o contraseña incorrecta";
+    public static final String AUTHENTICATION_ERROR_MESSAGE = ApplicationContextProvider.getContext().getString(R.string.activity_login_error_message);
 
     private int eventType;
     private String message;
@@ -17,11 +20,6 @@ public class Authentication_Event {
     public Authentication_Event(int eventType, String message) {
         this.eventType = eventType;
         this.message = message;
-    }
-
-
-    public void setEventType(int eventType) {
-        this.eventType = eventType;
     }
 
     public int getEventType() {
