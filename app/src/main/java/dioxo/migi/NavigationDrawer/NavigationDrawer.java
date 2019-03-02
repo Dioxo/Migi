@@ -27,6 +27,7 @@ import dioxo.migi.R;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class NavigationDrawer extends AppCompatActivity
@@ -183,5 +184,10 @@ public class NavigationDrawer extends AppCompatActivity
     @Override
     public void afficherBackgroundVide() {
 
+    }
+
+    @Override
+    public void chechIfNoteClicked(Serializable note) {
+        //Aller NoteActivity et envoyer la note du JSON response
     }
 }

@@ -55,7 +55,7 @@ public class Note implements Serializable
     public String getIdNote() {
         return idNote;
     }
-    
+
     public String getTitle() {
         return title;
     }

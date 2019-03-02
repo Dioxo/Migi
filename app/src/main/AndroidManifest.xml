@@ -24,7 +24,7 @@
             android:label="@string/title_activity_navigation_drawer"
             android:theme="@style/AppTheme"></activity>
         <activity
-            android:name=".NoteActivity"
+            android:name=".Note.NoteActivity"
             android:label="@string/title_activity_note"
             android:parentActivityName=".NavigationDrawer.NavigationDrawer"
             android:theme="@style/AppTheme">
