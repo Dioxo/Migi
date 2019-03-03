@@ -1,5 +1,6 @@
 package dioxo.migi.Note;
 
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.android.volley.RequestQueue;
@@ -9,6 +10,7 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import dioxo.migi.Constantes;
 import dioxo.migi.Objets.Java_Request.DeleteNote;
 import dioxo.migi.Objets.Java_Request.InsertNote;
 import dioxo.migi.Objets.Java_Request.UpdateNote;
@@ -60,6 +62,7 @@ class NoteRepositoryImpl implements NoteRepository {
                 // si l'actualisation est effectuée
                 if(jsonObject.getBoolean("result")){
                     noteEvent = new NoteEvent(NoteEvent.INSERT_SUCCESS);
+                    storeNoteId(jsonObject.getString("id_note"));
                 }else{
                     noteEvent = new NoteEvent(NoteEvent.INSERT_ERROR);
                 }
@@ -75,6 +78,15 @@ class NoteRepositoryImpl implements NoteRepository {
         RequestQueue request = Volley.newRequestQueue(ApplicationContextProvider.getContext());
         request.add(insertNote);
 
+    }
+
+    private void storeNoteId(String id_note) {
+        SharedPreferences settings = ApplicationContextProvider.getContext().getSharedPreferences(Constantes.NOTE_ACTUAL, 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putString(Constantes.NOTE_ACTUAL, id_note);
+
+        // Commit the edits!
+        editor.apply();
     }
 
     @Override

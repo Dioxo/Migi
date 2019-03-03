@@ -13,6 +13,8 @@ public interface NoteView {
 
     void showProgressBar();
     void hideProgressBar();
+    void enableInputs();
+    void disableInputs();
 
     void update(boolean success);
     void insert(boolean success);

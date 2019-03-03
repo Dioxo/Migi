@@ -199,8 +199,21 @@ public class NoteActivity extends AppCompatActivity implements NoteView {
     }
 
     @Override
+    public void enableInputs() {
+        txtTitle.setEnabled(true);
+        txtDescription.setEnabled(true);
+    }
+
+    @Override
+    public void disableInputs() {
+        txtTitle.setEnabled(false);
+        txtDescription.setEnabled(false);
+    }
+
+    @Override
     public void update(boolean success) {
         hideProgressBar();
+        enableInputs();
 
         if(success){
 
@@ -218,6 +231,7 @@ public class NoteActivity extends AppCompatActivity implements NoteView {
     @Override
     public void insert(boolean success) {
         hideProgressBar();
+        enableInputs();
 
         if(success){
 
@@ -237,7 +251,7 @@ public class NoteActivity extends AppCompatActivity implements NoteView {
     @Override
     public void delete(boolean success) {
         hideProgressBar();
-
+        enableInputs();
         if(success){
 
             finish();

@@ -77,7 +77,15 @@ class NotePresenterImpl implements NotePresenter {
 
     @Override
     public void updateNote(Note note) {
+        showProgressBar();
+        disableInputs();
         noteRepository.updateNote(note);
+    }
+
+    private void showProgressBar() {
+        if(view != null){
+            view.showProgressBar();
+        }
     }
 
     @Override
@@ -87,11 +95,21 @@ class NotePresenterImpl implements NotePresenter {
 
     @Override
     public void insertNote(Note note) {
+        showProgressBar();
+        disableInputs();
         noteRepository.insertNote(note);
+    }
+
+    private void disableInputs() {
+        if(view != null){
+            view.disableInputs();
+        }
     }
 
     @Override
     public void deleteNote() {
+        showProgressBar();
+        disableInputs();
         noteRepository.deleteNote();
     }
 

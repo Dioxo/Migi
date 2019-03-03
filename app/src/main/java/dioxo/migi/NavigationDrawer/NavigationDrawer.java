@@ -78,6 +78,13 @@ public class NavigationDrawer extends AppCompatActivity
         //Creation presenter
         presenter = new NavigationPresenterImpl(this);
         presenter.onCreate();
+
+        
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         chercherNotes();
     }
 
