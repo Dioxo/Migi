@@ -1,5 +1,6 @@
 package dioxo.migi.NavigationDrawer;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -17,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import dioxo.migi.Note.NoteActivity;
 import dioxo.migi.Objets.Objs.CardNote;
 import dioxo.migi.Objets.Objs.ListTag;
 import dioxo.migi.Objets.Objs.Node;
@@ -56,8 +58,9 @@ public class NavigationDrawer extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                 //       .setAction("Action", null).show();
+                Intent intent = new Intent(getApplication(), NoteActivity.class);
+                intent.putExtra("Note",(Serializable) null);
+                startActivity(intent);
             }
         });
 

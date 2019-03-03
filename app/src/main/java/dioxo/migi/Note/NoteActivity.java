@@ -34,20 +34,23 @@ public class NoteActivity extends AppCompatActivity implements NoteView{
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        /*fab.setOnClickListener(new View.OnClickListener() {
+        fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+
             }
-        });*/
+        });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         presenter = new NotePresenterImpl(this);
         presenter.onCreate();
 
         //Confirmer si existe une note qui est passé comme argument
-        presenter.chechIfNoteClicked(getIntent().getExtras().getSerializable("Note"));
+        if(getIntent().getExtras().getSerializable("Note") != null){
+            presenter.chechIfNoteClicked(getIntent().getExtras().getSerializable("Note"));
+        }else {
+            presenter.chechIfNoteClicked(null);
+        }
     }
 
     @Override
