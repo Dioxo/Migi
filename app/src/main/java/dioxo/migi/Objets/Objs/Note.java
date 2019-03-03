@@ -56,10 +56,6 @@ public class Note implements Serializable
         return idNote;
     }
 
-    public void setIdNote(String idNote) {
-        this.idNote = idNote;
-    }
-
     public String getTitle() {
         return title;
     }

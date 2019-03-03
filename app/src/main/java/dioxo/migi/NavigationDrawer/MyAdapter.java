@@ -1,5 +1,6 @@
 package dioxo.migi.NavigationDrawer;
 
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
+import dioxo.migi.Note.NoteActivity;
 import dioxo.migi.Objets.Objs.CardNote;
 import dioxo.migi.Objets.Objs.Note;
 import dioxo.migi.R;
@@ -117,6 +119,21 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                 Log.i("Note","Reviser");
             }
         });*/
+
+        holder.title.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Log.i("Click", notes.get(position).getTitle());
+
+                //If TITLE CLICKED
+                /*
+                * Send the note to next activity
+                * */
+                Intent intent = new Intent(ApplicationContextProvider.getContext(), NoteActivity.class);
+                intent.putExtra("Note", notes.get(position));
+                ApplicationContextProvider.getContext().startActivity(intent);
+            }
+        });
 
     }
 
