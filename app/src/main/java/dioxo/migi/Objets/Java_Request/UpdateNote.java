@@ -1,6 +1,7 @@
 package dioxo.migi.Objets.Java_Request;
 
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -28,8 +29,13 @@ public class UpdateNote extends StringRequest {
         SharedPreferences settings = ApplicationContextProvider.getContext().getSharedPreferences(Constantes.ID_USER, 0);
         String id_user = settings.getString(Constantes.ID_USER,null);
         parametres = new HashMap<>();
+
+        SharedPreferences noteSharedPreferences = ApplicationContextProvider.getContext().getSharedPreferences(Constantes.NOTE_ACTUAL, 0);
+        String id_note = noteSharedPreferences.getString(Constantes.NOTE_ACTUAL, null);
+
+        Log.i("Note", id_user + " " + note.getIdNote() + " " + note.getTitle() + " " + note.getDescription());
         parametres.put(Constantes.ID_USER,id_user);
-        parametres.put("idNote",note.getIdNote());
+        parametres.put("idNote",id_note);
         parametres.put("title",note.getTitle());
         parametres.put("description",note.getDescription());
     }

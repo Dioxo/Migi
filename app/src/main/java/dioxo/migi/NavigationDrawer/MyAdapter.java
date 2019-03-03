@@ -127,7 +127,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
                 //If TITLE CLICKED
                 /*
-                *
                 * Send the note to next activity
                 * */
                 Intent intent = new Intent(ApplicationContextProvider.getContext(), NoteActivity.class);

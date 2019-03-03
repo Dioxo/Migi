@@ -1,5 +1,7 @@
 package dioxo.migi.Note;
 
+import android.util.Log;
+
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
@@ -76,7 +78,7 @@ class NoteRepositoryImpl implements NoteRepository {
     }
 
     @Override
-    public void deleteNote(String note) {
+    public void deleteNote() {
         Response.Listener<String> success = response -> {
             try {
                 JSONObject jsonObject = new JSONObject(response);
@@ -84,8 +86,10 @@ class NoteRepositoryImpl implements NoteRepository {
 
                 // si l'actualisation est effectuée
                 if(jsonObject.getBoolean("result")){
+                    Log.i("Note", "result " + jsonObject.getBoolean("result") );
                     noteEvent = new NoteEvent(NoteEvent.DELETE_SUCCESS);
                 }else{
+                    Log.i("Note", "result " + jsonObject.getBoolean("result") );
                     noteEvent = new NoteEvent(NoteEvent.DELETE_ERROR);
                 }
 
@@ -96,7 +100,8 @@ class NoteRepositoryImpl implements NoteRepository {
             }
         };
 
-        DeleteNote updateNote = new DeleteNote(success, note);
+
+        DeleteNote updateNote = new DeleteNote(success);
         RequestQueue request = Volley.newRequestQueue(ApplicationContextProvider.getContext());
         request.add(updateNote);
     }

@@ -17,7 +17,7 @@ public class DeleteNote extends StringRequest {
     private static final String route = Constantes.DELETE_NOTE;
     private Map<String, String > parametres;
 
-    public DeleteNote(Response.Listener<String> listener, String idNote ){
+    public DeleteNote(Response.Listener<String> listener ){
         super(Request.Method.POST,route,listener,null);
 
         /*
@@ -26,6 +26,10 @@ public class DeleteNote extends StringRequest {
 
         SharedPreferences settings = ApplicationContextProvider.getContext().getSharedPreferences(Constantes.ID_USER, 0);
         String id_user = settings.getString(Constantes.ID_USER,null);
+
+        SharedPreferences noteSharedPreferences = ApplicationContextProvider.getContext().getSharedPreferences(Constantes.NOTE_ACTUAL, 0);
+        String idNote = noteSharedPreferences.getString(Constantes.NOTE_ACTUAL,null);
+
         parametres = new HashMap<>();
         parametres.put(Constantes.ID_USER,id_user);
         parametres.put("idNote",idNote);

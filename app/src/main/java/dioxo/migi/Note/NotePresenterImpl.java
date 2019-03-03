@@ -21,9 +21,41 @@ class NotePresenterImpl implements NotePresenter {
     @Override
     @Subscribe
     public void onEventMainThread(NoteEvent event) {
-        switch(event.getEventType()){
+        if(view != null){
+
+
+            switch(event.getEventType()){
+                case NoteEvent.UPDATE_SUCCESS:
+                    view.update(true);
+                    break;
+
+                case NoteEvent.UPDATE_ERROR:
+                    view.update(false);
+                    break;
+
+
+                case NoteEvent.DELETE_SUCCESS:
+                    view.delete(true);
+                    break;
+
+
+                case NoteEvent.DELETE_ERROR:
+                    view.delete(false);
+                    break;
+
+
+                case NoteEvent.INSERT_SUCCESS:
+                    view.insert(true);
+                    break;
+
+
+                case NoteEvent.INSERT_ERROR:
+                    view.insert(false);
+                    break;
+            }
 
         }
+
     }
 
     @Override
@@ -59,8 +91,8 @@ class NotePresenterImpl implements NotePresenter {
     }
 
     @Override
-    public void deleteNote(String note) {
-        noteRepository.deleteNote(note);
+    public void deleteNote() {
+        noteRepository.deleteNote();
     }
 
 

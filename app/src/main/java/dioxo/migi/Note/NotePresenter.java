@@ -9,7 +9,7 @@ public interface NotePresenter {
     void cancelNote();
 
     void insertNote(Note note);
-    void deleteNote(String note);
+    void deleteNote();
 
     void onCreate();
     void onDestroy();

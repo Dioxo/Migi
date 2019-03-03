@@ -10,4 +10,11 @@ public interface NoteView {
 
     void insertNote();
     void deleteNote();
+
+    void showProgressBar();
+    void hideProgressBar();
+
+    void update(boolean success);
+    void insert(boolean success);
+    void delete(boolean success);
 }
