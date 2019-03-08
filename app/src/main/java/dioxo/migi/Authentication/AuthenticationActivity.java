@@ -39,6 +39,7 @@ public class AuthenticationActivity extends AppCompatActivity implements Authent
         
         presenter = new Authentication_Presenter_Impl(this);
         presenter.onCreate();
+        presenter.checkAlreadyConnected();
         hideProgressBar();
 
         edTxtUser.setText("a@a.com");
