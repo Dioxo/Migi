@@ -14,4 +14,6 @@ public interface NavigationPresenter {
     void chercherNotes();
     void afficherNotes(ArrayList<Note> notes);
     void afficherBackgroundVide();
+
+    void closeSession();
 }
