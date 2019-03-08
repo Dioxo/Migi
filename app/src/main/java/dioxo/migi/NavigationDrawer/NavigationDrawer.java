@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import dioxo.migi.Authentication.AuthenticationActivity;
 import dioxo.migi.Note.NoteActivity;
 import dioxo.migi.Objets.Objs.CardNote;
 import dioxo.migi.Objets.Objs.ListTag;
@@ -136,7 +137,8 @@ public class NavigationDrawer extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.deconnexion) {
+            presenter.closeSession();
             return true;
         }
 
@@ -199,5 +201,10 @@ public class NavigationDrawer extends AppCompatActivity
     @Override
     public void chechIfNoteClicked(Serializable note) {
         //Aller NoteActivity et envoyer la note du JSON response
+    }
+
+    @Override
+    public void goToLogin() {
+        startActivity(new Intent(this, AuthenticationActivity.class));
     }
 }

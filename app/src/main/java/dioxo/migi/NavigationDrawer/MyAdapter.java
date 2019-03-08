@@ -76,12 +76,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         * */
         holder.title.setText(notes.get(position).getTitle());
         holder.description.setText(notes.get(position).getDescription());
-        holder.tagsContenier.setVisibility(View.GONE);
-
-
 
         //COdigo para implementar los tags, por ahora sin implementación
-        /*if(notes.get(position).getTags() != null) {
+        if(notes.get(position).getTags() != null) {
 
             for(int i = 0; i < notes.get(position).getTags().size(); i++)
             {
@@ -101,9 +98,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             //holder.tag2.setText(notes.get(position).getTags().get(1).getTextTag());
             //holder.tag3.setText(notes.get(position).getTags().get(2).getTextTag());
         }else{
-            //On n'a pas de Tags
+            //On n'a pas de Tag
             holder.tagsContenier.setVisibility(View.GONE);
-        }*/
+        }
 
         /* holder.archiver.setOnClickListener(new View.OnClickListener() {
             @Override

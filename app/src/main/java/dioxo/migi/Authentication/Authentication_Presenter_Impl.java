@@ -1,8 +1,13 @@
 package dioxo.migi.Authentication;
 
 
+import android.content.SharedPreferences;
+import android.util.Log;
+
 import org.greenrobot.eventbus.Subscribe;
 
+import dioxo.migi.Constantes;
+import dioxo.migi.libs.ApplicationContextProvider;
 import dioxo.migi.libs.EventBus;
 import dioxo.migi.libs.GreenRobotEventBus;
 
@@ -58,6 +63,24 @@ public class Authentication_Presenter_Impl implements Authentication_Presenter {
                 }
                 break;
         }
+    }
+
+    @Override
+    public void checkAlreadyConnected() {
+        SharedPreferences settings = ApplicationContextProvider.getContext().getSharedPreferences(Constantes.ID_USER, 0);
+        String id_user = settings.getString(Constantes.ID_USER,null);
+
+        if(id_user  != null) {
+            Log.i("Session LOl" , "Already Connected" );
+            Log.i("Session LOl" , id_user);
+
+            if (view != null) {
+                view.enableInputs();
+                view.hideProgressBar();
+                view.goToNextPage();
+            }
+        }
+
     }
 
 }

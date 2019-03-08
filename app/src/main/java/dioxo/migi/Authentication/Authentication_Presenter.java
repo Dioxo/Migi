@@ -12,4 +12,5 @@ public interface Authentication_Presenter {
 
     void onEventMainThread(Authentication_Event authenticationEvent);
 
+    void checkAlreadyConnected();
 }

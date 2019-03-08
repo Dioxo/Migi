@@ -89,8 +89,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:maxLines="6"
-            android:text="Le but essentiel de la normalisation est d'éviter les anomalies transactionnelles pouvant découler d'une mauvaise modélisation des données et ainsi éviter un certain nombre de problèmes potentiels tels que les anomalies"/>
-
+            />
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

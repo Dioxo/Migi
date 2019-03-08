@@ -11,5 +11,5 @@ public interface NavigationView {
     void afficherBackgroundVide();
 
     void chechIfNoteClicked(Serializable note);
-
+    void goToLogin();
 }
