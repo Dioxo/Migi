@@ -82,7 +82,7 @@ public class Authentication_Repository_Impl implements Authentication_Repository
         SharedPreferences settings = ApplicationContextProvider.getContext().getSharedPreferences(Constantes.ID_USER, 0);
         SharedPreferences.Editor editor = settings.edit();
         editor.putString(Constantes.ID_USER, id_user);
-        
+
         // Commit the edits!
         editor.apply();
     }

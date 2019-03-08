@@ -7,6 +7,7 @@ import dioxo.migi.Objets.Objs.Note;
 class NavigationEvent {
     public static final int NOTES_SUCCESS = 0;
     public static final int NOTES_ERROR = 1;
+    public static final int SESSION_CLOSE_SUCCESS = 2;
 
     private int eventType;
     private String message;

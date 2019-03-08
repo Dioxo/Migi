@@ -41,6 +41,18 @@ class NavigationPresenterImpl implements NavigationPresenter {
             case NavigationEvent.NOTES_ERROR:
                 afficherBackgroundVide();
                 break;
+
+            case NavigationEvent.SESSION_CLOSE_SUCCESS:
+                goToLogin();
+                break;
+        }
+    }
+
+    private void goToLogin() {
+        if( view != null ){
+
+            view.goToLogin();
+
         }
     }
 
@@ -61,5 +73,10 @@ class NavigationPresenterImpl implements NavigationPresenter {
         if(view != null){
             view.afficherBackgroundVide();
         }
+    }
+
+    @Override
+    public void closeSession() {
+        repository.closeSession();
     }
 }
