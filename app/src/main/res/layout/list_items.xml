@@ -25,12 +25,19 @@
             android:textSize="20dp"
             android:textStyle="bold" />
 
-        <LinearLayout
+        <HorizontalScrollView
             android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:layout_marginTop="12dp">
-            <include layout="@layout/tags_contenier" />
-        </LinearLayout>
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:id="@+id/tags_contenier"
+                android:orientation="horizontal"
+                android:layout_marginTop="12dp">
+            </LinearLayout>
+
+        </HorizontalScrollView>
+
 
        <!-- <LinearLayout
             android:layout_width="wrap_content"
