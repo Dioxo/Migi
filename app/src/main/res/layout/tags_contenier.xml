@@ -19,6 +19,7 @@
                 android:layout_height="35dp"
                 android:layout_marginEnd="8dp"
                 android:gravity="center"
+                android:text="TEST"
                 android:background="@drawable/tag_form"
                 android:backgroundTint="@color/tag_purple"
                 android:textColor="@color/secondaryTextColor" />

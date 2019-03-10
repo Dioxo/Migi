@@ -76,11 +76,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         * */
         holder.title.setText(notes.get(position).getTitle());
         holder.description.setText(notes.get(position).getDescription());
+        //holder.tagsContenier.setVisibility(View.GONE);
 
         //COdigo para implementar los tags, por ahora sin implementación
         if(notes.get(position).getTags() != null) {
 
-            for(int i = 0; i < notes.get(position).getTags().size(); i++)
+            for(int i = 1; i < notes.get(position).getTags().size(); i++)
             {
                 holder.tags = (LinearLayout)LayoutInflater.from(ApplicationContextProvider.getContext()).inflate(R.layout.tags_contenier,null);
                 TextView textTag = holder.tagsContenier.findViewById(R.id.txt_Tag);
@@ -98,8 +99,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             //holder.tag2.setText(notes.get(position).getTags().get(1).getTextTag());
             //holder.tag3.setText(notes.get(position).getTags().get(2).getTextTag());
         }else{
-            //On n'a pas de Tag
-            holder.tagsContenier.setVisibility(View.GONE);
+            //On n'a pas de Tags
+            Log.i("Tag", "NOKS");
+            //holder.tagsContenier.setVisibility(View.GONE);
         }
 
         /* holder.archiver.setOnClickListener(new View.OnClickListener() {
