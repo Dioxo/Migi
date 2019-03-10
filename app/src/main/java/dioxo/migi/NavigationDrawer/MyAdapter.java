@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,7 +34,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         public CardView cardView;
         public TextView title,description,tag1,tag2,tag3;
         public Button archiver,reviser;
-        public LinearLayout tagsContenier, tags;
+        public LinearLayout tagsContenier;
+        public LinearLayout tags;
 
         public MyViewHolder(View v) {
             super(v);
@@ -81,27 +83,19 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         //COdigo para implementar los tags, por ahora sin implementación
         if(notes.get(position).getTags() != null) {
 
-            for(int i = 1; i < notes.get(position).getTags().size(); i++)
+            for(int i = 0; i < notes.get(position).getTags().size(); i++)
             {
-                holder.tags = (LinearLayout)LayoutInflater.from(ApplicationContextProvider.getContext()).inflate(R.layout.tags_contenier,null);
-                TextView textTag = holder.tagsContenier.findViewById(R.id.txt_Tag);
-                textTag.setText("LOL");
+                LinearLayout tags_corp = (LinearLayout)LayoutInflater.from(ApplicationContextProvider.getContext()).inflate(R.layout.tags_contenier,null);
+                //holder.tags = (LinearLayout)LayoutInflater.from(ApplicationContextProvider.getContext()).inflate(R.layout.tags_contenier,null);
+                TextView textTag = tags_corp.findViewById(R.id.txt_Tag);
+                textTag.setText(notes.get(position).getTags().get(i).getTextTag());
 
-                holder.tagsContenier.addView(holder.tags);
+                holder.tagsContenier.addView(tags_corp);
             }
 
-
-            System.out.println("---------------------TAGS -----------------------");
-            System.out.println(notes.get(position).getTags().get(0).getTextTag());
-            System.out.println(notes.get(position).getTags().get(1).getTextTag());
-            System.out.println(notes.get(position).getTags().get(2).getTextTag());
-            //holder.tag1.setText(notes.get(position).getTags().get(0).getTextTag());
-            //holder.tag2.setText(notes.get(position).getTags().get(1).getTextTag());
-            //holder.tag3.setText(notes.get(position).getTags().get(2).getTextTag());
         }else{
             //On n'a pas de Tags
-            Log.i("Tag", "NOKS");
-            //holder.tagsContenier.setVisibility(View.GONE);
+            holder.tagsContenier.setVisibility(View.GONE);
         }
 
         /* holder.archiver.setOnClickListener(new View.OnClickListener() {
