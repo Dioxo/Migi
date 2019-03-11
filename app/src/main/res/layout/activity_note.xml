@@ -24,6 +24,39 @@
     <include layout="@layout/content_note" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/ajouter_tag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginRight="@dimen/fab_margin"
+        android:layout_marginBottom="180dp"
+        android:src="@android:drawable/ic_menu_add"
+        android:visibility="invisible"
+        app:backgroundTint="@color/tag_yellow"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_conver_tache"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginRight="@dimen/fab_margin"
+        android:layout_marginBottom="130dp"
+        android:src="@drawable/liste"
+        android:visibility="invisible"
+        app:backgroundTint="@color/tag_yellow"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_reviser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginRight="@dimen/fab_margin"
+        android:layout_marginBottom="80dp"
+        android:src="@drawable/reviser"
+        android:visibility="invisible"
+        app:backgroundTint="@color/tag_yellow"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

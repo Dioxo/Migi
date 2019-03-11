@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -20,6 +22,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import dioxo.migi.Constantes;
 import dioxo.migi.Objets.Objs.Note;
 import dioxo.migi.R;
@@ -37,9 +40,19 @@ public class NoteActivity extends AppCompatActivity implements NoteView {
     CoordinatorLayout coordinator;
     @BindView(R.id.tags_contenier)
     LinearLayout tagsContenier;
+    @BindView(R.id.fab_conver_tache)
+    FloatingActionButton fabConverTache;
+    @BindView(R.id.fab_reviser)
+    FloatingActionButton fabReviser;
+    @BindView(R.id.fab)
+    FloatingActionButton fab;
+    @BindView(R.id.ajouter_tag)
+    FloatingActionButton ajouterTag;
 
     private NotePresenter presenter;
     private boolean noteAlreadyExist = false;
+    private Animation fabOpen, fabClose, fabRotateClockwise, fabRotateAntiClockwise;
+    private boolean isOpen = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,13 +62,12 @@ public class NoteActivity extends AppCompatActivity implements NoteView {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-            }
-        });
+        fabOpen = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_open);
+        fabClose = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_close);
+        fabRotateClockwise = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_clockwise);
+        fabRotateAntiClockwise = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_anti_clockwise);
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         presenter = new NotePresenterImpl(this);
@@ -137,11 +149,10 @@ public class NoteActivity extends AppCompatActivity implements NoteView {
         txtTitle.setText(note.getTitle());
         txtDescription.setText(note.getDescription());
 
-        if(note.getTags() != null) {
+        if (note.getTags() != null) {
 
-            for(int i = 0; i < note.getTags().size(); i++)
-            {
-                LinearLayout tags_corp = (LinearLayout)LayoutInflater.from(ApplicationContextProvider.getContext()).inflate(R.layout.tags_contenier,null);
+            for (int i = 0; i < note.getTags().size(); i++) {
+                LinearLayout tags_corp = (LinearLayout) LayoutInflater.from(ApplicationContextProvider.getContext()).inflate(R.layout.tags_contenier, null);
                 //holder.tags = (LinearLayout)LayoutInflater.from(ApplicationContextProvider.getContext()).inflate(R.layout.tags_contenier,null);
                 TextView textTag = tags_corp.findViewById(R.id.txt_Tag);
                 textTag.setText(note.getTags().get(i).getTextTag());
@@ -149,7 +160,7 @@ public class NoteActivity extends AppCompatActivity implements NoteView {
                 tagsContenier.addView(tags_corp);
             }
 
-        }else{
+        } else {
             //On n'a pas de Tags
             tagsContenier.setVisibility(View.GONE);
         }
@@ -283,5 +294,46 @@ public class NoteActivity extends AppCompatActivity implements NoteView {
                     .make(coordinator, "Erreur: impossible d'enregistrer les modifications", Snackbar.LENGTH_LONG);
             snackbar.show();
         }
+    }
+
+    @OnClick(R.id.fab_conver_tache)
+    public void onFabConverTacheClicked() {
+    }
+
+    @OnClick(R.id.fab_reviser)
+    public void onFabReviserClicked() {
+    }
+
+    @OnClick(R.id.fab)
+    public void onFabClicked() {
+
+        if (isOpen) {
+
+            fabReviser.startAnimation(fabClose);
+            fabConverTache.startAnimation(fabClose);
+            ajouterTag.startAnimation(fabClose);
+            fab.startAnimation(fabRotateAntiClockwise);
+
+            fabReviser.setClickable(false);
+            fabConverTache.setClickable(false);
+            ajouterTag.setClickable(false);
+            isOpen = false;
+
+        } else {
+            fabReviser.startAnimation(fabOpen);
+            fabConverTache.startAnimation(fabOpen);
+            ajouterTag.startAnimation(fabOpen);
+            fab.startAnimation(fabRotateClockwise);
+
+            fabReviser.setClickable(true);
+            fabConverTache.setClickable(true);
+            ajouterTag.setClickable(true);
+            isOpen = true;
+        }
+
+    }
+
+    @OnClick(R.id.ajouter_tag)
+    public void onViewClicked() {
     }
 }
