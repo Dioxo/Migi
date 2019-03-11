@@ -12,6 +12,9 @@ class NoteEvent {
 
     public static final int DELETE_SUCCESS = 4;
     public static final int DELETE_ERROR = 5;
+
+    public static final int TAG_INSERT_SUCCESS = 6;
+    public static final int TAG_INSERT_ERROR = 7;
     private int eventType;
     private String message;
 

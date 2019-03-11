@@ -18,4 +18,6 @@ public interface NotePresenter {
 
     //COnfirmer si y a une note passé comme argument
     void chechIfNoteClicked(Serializable note);
+
+    void ajouterTag(String tagNom);
 }

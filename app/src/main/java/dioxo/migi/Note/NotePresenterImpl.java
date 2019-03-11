@@ -76,6 +76,11 @@ class NotePresenterImpl implements NotePresenter {
     }
 
     @Override
+    public void ajouterTag(String tagNom) {
+        noteRepository.ajouterTag(tagNom);
+    }
+
+    @Override
     public void updateNote(Note note) {
         showProgressBar();
         disableInputs();
