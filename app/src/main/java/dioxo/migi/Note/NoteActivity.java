@@ -3,11 +3,14 @@ package dioxo.migi.Note;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -20,6 +23,7 @@ import butterknife.ButterKnife;
 import dioxo.migi.Constantes;
 import dioxo.migi.Objets.Objs.Note;
 import dioxo.migi.R;
+import dioxo.migi.libs.ApplicationContextProvider;
 
 public class NoteActivity extends AppCompatActivity implements NoteView {
 
@@ -31,6 +35,8 @@ public class NoteActivity extends AppCompatActivity implements NoteView {
     ProgressBar progressBar;
     @BindView(R.id.coordinator)
     CoordinatorLayout coordinator;
+    @BindView(R.id.tags_contenier)
+    LinearLayout tagsContenier;
 
     private NotePresenter presenter;
     private boolean noteAlreadyExist = false;
@@ -131,6 +137,22 @@ public class NoteActivity extends AppCompatActivity implements NoteView {
         txtTitle.setText(note.getTitle());
         txtDescription.setText(note.getDescription());
 
+        if(note.getTags() != null) {
+
+            for(int i = 0; i < note.getTags().size(); i++)
+            {
+                LinearLayout tags_corp = (LinearLayout)LayoutInflater.from(ApplicationContextProvider.getContext()).inflate(R.layout.tags_contenier,null);
+                //holder.tags = (LinearLayout)LayoutInflater.from(ApplicationContextProvider.getContext()).inflate(R.layout.tags_contenier,null);
+                TextView textTag = tags_corp.findViewById(R.id.txt_Tag);
+                textTag.setText(note.getTags().get(i).getTextTag());
+
+                tagsContenier.addView(tags_corp);
+            }
+
+        }else{
+            //On n'a pas de Tags
+            tagsContenier.setVisibility(View.GONE);
+        }
 
     }
 
@@ -215,15 +237,15 @@ public class NoteActivity extends AppCompatActivity implements NoteView {
         hideProgressBar();
         enableInputs();
 
-        if(success){
+        if (success) {
 
             Snackbar snackbar = Snackbar
                     .make(coordinator, "Les actualisations ont bien été enregistrés", Snackbar.LENGTH_LONG);
             snackbar.show();
 
-        }else{
+        } else {
             Snackbar snackbar = Snackbar
-                .make(coordinator, "Erreur: impossible d'enregistrer les modifications", Snackbar.LENGTH_LONG);
+                    .make(coordinator, "Erreur: impossible d'enregistrer les modifications", Snackbar.LENGTH_LONG);
             snackbar.show();
         }
     }
@@ -233,7 +255,7 @@ public class NoteActivity extends AppCompatActivity implements NoteView {
         hideProgressBar();
         enableInputs();
 
-        if(success){
+        if (success) {
 
             Snackbar snackbar = Snackbar
                     .make(coordinator, "Les actualisations ont bien été enregistrés", Snackbar.LENGTH_LONG);
@@ -241,7 +263,7 @@ public class NoteActivity extends AppCompatActivity implements NoteView {
 
             noteAlreadyExist = true;
             supportInvalidateOptionsMenu();
-        }else{
+        } else {
             Snackbar snackbar = Snackbar
                     .make(coordinator, "Erreur: impossible d'enregistrer les modifications", Snackbar.LENGTH_LONG);
             snackbar.show();
@@ -252,11 +274,11 @@ public class NoteActivity extends AppCompatActivity implements NoteView {
     public void delete(boolean success) {
         hideProgressBar();
         enableInputs();
-        if(success){
+        if (success) {
 
             finish();
 
-        }else{
+        } else {
             Snackbar snackbar = Snackbar
                     .make(coordinator, "Erreur: impossible d'enregistrer les modifications", Snackbar.LENGTH_LONG);
             snackbar.show();
