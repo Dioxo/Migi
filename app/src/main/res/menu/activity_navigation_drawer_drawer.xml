@@ -17,7 +17,7 @@
             android:icon="@drawable/notes"
             android:title="@string/nav_header_notes" />
         <item
-            android:id="@+id/nav_dossier"
+            android:id="@+id/nav_tags"
             android:icon="@drawable/dossier"
             android:title="@string/nav_header_dossier" />
         <item

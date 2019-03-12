@@ -2,11 +2,13 @@ package dioxo.migi.NavigationDrawer;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import android.util.Log;
 import android.view.View;
 
 import com.google.android.material.navigation.NavigationView;
@@ -16,6 +18,9 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import dioxo.migi.Authentication.AuthenticationActivity;
@@ -26,6 +31,7 @@ import dioxo.migi.Objets.Objs.Node;
 import dioxo.migi.Objets.Objs.Note;
 import dioxo.migi.Objets.Objs.Tag;
 import dioxo.migi.R;
+import dioxo.migi.listeTags.TagsFragment;
 
 import android.view.Menu;
 import android.view.MenuItem;
@@ -35,7 +41,8 @@ import java.util.ArrayList;
 
 public class NavigationDrawer extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
-        dioxo.migi.NavigationDrawer.NavigationView {
+        dioxo.migi.NavigationDrawer.NavigationView,
+        TagsFragment.OnFragmentInteractionListener{
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -151,10 +158,17 @@ public class NavigationDrawer extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        /*
-        if (id == R.id.nav_camera) {
+        boolean transition = false;
+        Fragment fragment = null;
+
+        Log.i("Fragment", "ENTRE");
+
+        if (id == R.id.nav_tags) {
+            Log.i("Fragment", "CLICKED");
+            transition = true;
+            fragment = new TagsFragment();
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        }/* else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {
 
@@ -166,6 +180,17 @@ public class NavigationDrawer extends AppCompatActivity
 
         }*/
 
+        if(transition){
+
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.content_drawer, fragment)
+                    .commit();
+
+            item.setChecked(true);
+
+            getSupportActionBar().setTitle(item.getTitle());
+        }
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
@@ -173,12 +198,12 @@ public class NavigationDrawer extends AppCompatActivity
 
     @Override
     public void chercherNotes() {
-        presenter.chercherNotes();
+        //presenter.chercherNotes();
     }
 
     @Override
     public void afficherNotes(ArrayList<Note> notes) {
-        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerNotes);
+        /*mRecyclerView = (RecyclerView) findViewById(R.id.recyclerNotes);
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
         mRecyclerView.setHasFixedSize(true);
@@ -190,7 +215,7 @@ public class NavigationDrawer extends AppCompatActivity
         // specify an adapter (see also next example)
         //ArrayList<CardNote> notes = getNotes();
         mAdapter = new MyAdapter(notes);
-        mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.setAdapter(mAdapter);*/
     }
 
     @Override
@@ -206,5 +231,10 @@ public class NavigationDrawer extends AppCompatActivity
     @Override
     public void goToLogin() {
         startActivity(new Intent(this, AuthenticationActivity.class));
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 }

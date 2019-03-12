@@ -14,8 +14,11 @@
     <string name="nav_header_liste_taches">Liste de tâches</string>
     <string name="nav_header_reviser">À reviser</string>
     <string name="nav_header_notes">Toutes les notes</string>
-    <string name="nav_header_dossier">Dossiers</string>
+    <string name="nav_header_dossier">Tags</string>
     <string name="nav_header_corbeille">Corbeille</string>
     <string name="title_activity_note">NoteActivity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
