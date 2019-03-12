@@ -38,22 +38,24 @@
         app:layout_constraintTop_toBottomOf="@+id/txtTitle" />
 
 
-    <!-- <LinearLayout
-        android:id="@+id/linearLayout"
+    <HorizontalScrollView
+        android:id="@+id/horizontalScrollView"
         android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="16dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/line">
 
-        <include
-            layout="@layout/tags_contenier"
-            android:layout_width="298dp"
-            android:layout_height="35dp" />
-    </LinearLayout> -->
+        <LinearLayout
+            android:id="@+id/tags_contenier"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal"></LinearLayout>
+
+    </HorizontalScrollView>
 
 
     <EditText
@@ -61,19 +63,19 @@
         android:layout_width="match_parent"
         android:layout_height="385dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
+        android:background="@android:color/transparent"
+        android:gravity="left"
+        android:hint="¿De qué se trata esta nota?"
         android:inputType="textMultiLine"
         android:text="DescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescription"
-        android:hint="¿De qué se trata esta nota?"
         android:textAlignment="gravity"
-        android:gravity="left"
-        android:background="@android:color/transparent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/line" />
+        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
 
     <ProgressBar
         android:id="@+id/progressBar2"

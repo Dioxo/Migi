@@ -52,6 +52,15 @@ class NotePresenterImpl implements NotePresenter {
                 case NoteEvent.INSERT_ERROR:
                     view.insert(false);
                     break;
+
+                case NoteEvent.TAG_INSERT_ERROR:
+                    view.insert(false);
+                    break;
+
+                case NoteEvent.TAG_INSERT_SUCCESS:
+                    view.insert(true);
+                    view.refreshTags(event.getMessage());
+                    break;
             }
 
         }
@@ -73,6 +82,11 @@ class NotePresenterImpl implements NotePresenter {
             }
 
         }
+    }
+
+    @Override
+    public void ajouterTag(String tagNom) {
+        noteRepository.ajouterTag(tagNom);
     }
 
     @Override
