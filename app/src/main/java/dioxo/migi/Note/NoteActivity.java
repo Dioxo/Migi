@@ -188,26 +188,27 @@ public class NoteActivity extends AppCompatActivity implements NoteView, TagDial
     @Override
     public void updateNote() {
 
-        if (noteAlreadyExist) {
+        if (noteAlreadyExist && !txtTitle.getText().toString().isEmpty()) {
             Note note = new Note();
             note.setTitle(txtTitle.getText().toString());
             note.setDescription(txtDescription.getText().toString());
             presenter.updateNote(note);
         } else {
-            Log.i("Note", "Error, note not exist in BDD");
+            txtTitle.setError("La note ne peut contenir un titre vide");
         }
+
     }
 
 
     @Override
     public void insertNote() {
-        if (!noteAlreadyExist) {
+        if (!noteAlreadyExist && !txtTitle.getText().toString().isEmpty()) {
             Note note = new Note();
             note.setTitle(txtTitle.getText().toString());
             note.setDescription(txtDescription.getText().toString());
             presenter.insertNote(note);
         } else {
-            Log.i("Note", "Error, note already exist");
+            txtTitle.setError("La note ne peut contenir un titre vide");
         }
 
     }
@@ -296,6 +297,16 @@ public class NoteActivity extends AppCompatActivity implements NoteView, TagDial
                     .make(coordinator, "Erreur: impossible d'enregistrer les modifications", Snackbar.LENGTH_LONG);
             snackbar.show();
         }
+    }
+
+    @Override
+    public void refreshTags(String tagName) {
+        LinearLayout tags_corp = (LinearLayout) LayoutInflater.from(ApplicationContextProvider.getContext()).inflate(R.layout.tags_contenier, null);
+        TextView textTag = tags_corp.findViewById(R.id.txt_Tag);
+        textTag.setText(tagName);
+
+        tagsContenier.addView(tags_corp);
+
     }
 
     @OnClick(R.id.fab_conver_tache)

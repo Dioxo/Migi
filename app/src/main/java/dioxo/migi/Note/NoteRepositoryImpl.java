@@ -132,6 +132,7 @@ class NoteRepositoryImpl implements NoteRepository {
                 // si l'actualisation est effectuée
                 if(jsonObject.getBoolean("result")){
                     noteEvent = new NoteEvent(NoteEvent.TAG_INSERT_SUCCESS);
+                    noteEvent.setMessage(tagNom);
                 }else{
                     noteEvent = new NoteEvent(NoteEvent.TAG_INSERT_ERROR);
                 }
