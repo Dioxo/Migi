@@ -8,17 +8,13 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".NavigationDrawer.NavigationDrawer"
     android:layout_marginBottom="6dp"
-    android:id="@+id/content_drawer"
     android:background="@color/fond_ecran"
     tools:showIn="@layout/app_bar_navigation_drawer">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerNotes"
-        android:layout_height="match_parent"
-        android:layout_width="match_parent"/>
+
     <FrameLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:id="@+id/screen_area"/>
 
 
