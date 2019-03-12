@@ -24,6 +24,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import dioxo.migi.Authentication.AuthenticationActivity;
+import dioxo.migi.ListerTaches.TachesFragment;
 import dioxo.migi.Note.NoteActivity;
 import dioxo.migi.Objets.Objs.CardNote;
 import dioxo.migi.Objets.Objs.ListTag;
@@ -41,8 +42,9 @@ import java.util.ArrayList;
 
 public class NavigationDrawer extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
-        dioxo.migi.NavigationDrawer.NavigationView,
-        TagsFragment.OnFragmentInteractionListener{
+        TagsFragment.OnFragmentInteractionListener,
+        TachesFragment.OnFragmentInteractionListener,
+        ViewNavigation{
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -86,36 +88,16 @@ public class NavigationDrawer extends AppCompatActivity
         //Creation presenter
         presenter = new NavigationPresenterImpl(this);
         presenter.onCreate();
-
-        
+        ouvrirFragmentTachesParDefault();
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        chercherNotes();
-    }
+    private void ouvrirFragmentTachesParDefault() {
+        Fragment fragment = new TachesFragment();
+                getSupportFragmentManager().beginTransaction()
+                .replace(R.id.screen_area, fragment)
+                .commit();
 
-    private ArrayList<CardNote> getNotes() {
-        /*ArrayList<Tag> tags = new ArrayList<>();
-        tags.add(new Tag("BDD",R.color.tag_yellow));
-        tags.add(new Tag("TP",R.color.tag_purple));
-        tags.add(new Tag("Livre",R.color.tag_gray));
-        */
-        ArrayList<CardNote> notes = new ArrayList<>();
-
-        ListTag tags = new ListTag("BDD", R.color.tag_purple + "");
-        tags.add("TP",R.color.tag_purple + "");
-        tags.add("Livre",R.color.tag_gray + "");
-
-        notes.add(new CardNote("Normalisation","Le but essentiel de la normalisation est d'éviter les anomalies transactionnelles pouvant découler d'une mauvaise modélisation des données et ainsi éviter un certain nombre de problèmes potentiels tels que les anomalies",
-                tags ));
-        notes.add(new CardNote("Normalisation","Le but essentiel de la normalisation est d'éviter les anomalies transactionnelles pouvant découler d'une mauvaise modélisation des données et ainsi éviter un certain nombre de problèmes potentiels tels que les anomalies",
-                tags ));
-        notes.add(new CardNote("Normalisation","Le but essentiel de la normalisation est d'éviter les anomalies transactionnelles pouvant découler d'une mauvaise modélisation des données et ainsi éviter un certain nombre de problèmes potentiels tels que les anomalies",
-                tags ));
-
-        return notes;
+        getSupportActionBar().setTitle("Liste de Taches");
 
     }
 
@@ -168,9 +150,10 @@ public class NavigationDrawer extends AppCompatActivity
             transition = true;
             fragment = new TagsFragment();
             // Handle the camera action
-        }/* else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_liste_taches) {
+            transition = true;
+            fragment = new TachesFragment();
+        }/* else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {
 
@@ -183,7 +166,7 @@ public class NavigationDrawer extends AppCompatActivity
         if(transition){
 
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.content_drawer, fragment)
+                    .replace(R.id.screen_area, fragment)
                     .commit();
 
             item.setChecked(true);
@@ -197,44 +180,12 @@ public class NavigationDrawer extends AppCompatActivity
     }
 
     @Override
-    public void chercherNotes() {
-        //presenter.chercherNotes();
-    }
+    public void onFragmentInteraction(Uri uri) {
 
-    @Override
-    public void afficherNotes(ArrayList<Note> notes) {
-        /*mRecyclerView = (RecyclerView) findViewById(R.id.recyclerNotes);
-        // use this setting to improve performance if you know that changes
-        // in content do not change the layout size of the RecyclerView
-        mRecyclerView.setHasFixedSize(true);
-
-        // use a linear layout manager
-        mLayoutManager = new LinearLayoutManager(this);
-        mRecyclerView.setLayoutManager(mLayoutManager);
-
-        // specify an adapter (see also next example)
-        //ArrayList<CardNote> notes = getNotes();
-        mAdapter = new MyAdapter(notes);
-        mRecyclerView.setAdapter(mAdapter);*/
-    }
-
-    @Override
-    public void afficherBackgroundVide() {
-
-    }
-
-    @Override
-    public void chechIfNoteClicked(Serializable note) {
-        //Aller NoteActivity et envoyer la note du JSON response
     }
 
     @Override
     public void goToLogin() {
-        startActivity(new Intent(this, AuthenticationActivity.class));
-    }
-
-    @Override
-    public void onFragmentInteraction(Uri uri) {
-
+        startActivity(new Intent(getApplicationContext(), AuthenticationActivity.class));
     }
 }

@@ -11,9 +11,5 @@ public interface NavigationPresenter {
     void onEventMainThread(NavigationEvent event);
 
 
-    void chercherNotes();
-    void afficherNotes(ArrayList<Note> notes);
-    void afficherBackgroundVide();
-
     void closeSession();
 }
