@@ -70,58 +70,42 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         public TextView title,description,tag1,tag2,tag3;
         public Button archiver,reviser;
         * */
-        holder.title.setText(notes.get(position).getTitle());
-        holder.description.setText(notes.get(position).getDescription());
-        //holder.tagsContenier.setVisibility(View.GONE);
 
-        //COdigo para implementar los tags, por ahora sin implementación
-        if(notes.get(position).getTags() != null) {
+        if(notes.size() > 0) {
+            holder.title.setText(notes.get(position).getTitle());
+            holder.description.setText(notes.get(position).getDescription());
 
-            for(int i = 0; i < notes.get(position).getTags().size(); i++)
-            {
-                LinearLayout tags_corp = (LinearLayout)LayoutInflater.from(ApplicationContextProvider.getContext()).inflate(R.layout.tags_contenier,null);
-                //holder.tags = (LinearLayout)LayoutInflater.from(ApplicationContextProvider.getContext()).inflate(R.layout.tags_contenier,null);
-                TextView textTag = tags_corp.findViewById(R.id.txt_Tag);
-                textTag.setText(notes.get(position).getTags().get(i).getTextTag());
+            //COdigo para implementar los tags, por ahora sin implementación
+            if (notes.get(position).getTags() != null) {
 
-                holder.tagsContenier.addView(tags_corp);
+                for (int i = 0; i < notes.get(position).getTags().size(); i++) {
+                    LinearLayout tags_corp = (LinearLayout) LayoutInflater.from(ApplicationContextProvider.getContext()).inflate(R.layout.tags_contenier, null);
+                    TextView textTag = tags_corp.findViewById(R.id.txt_Tag);
+                    textTag.setText(notes.get(position).getTags().get(i).getTextTag());
+
+                    holder.tagsContenier.addView(tags_corp);
+                }
+
+            } else {
+                //On n'a pas de Tags
+                holder.tagsContenier.setVisibility(View.GONE);
             }
 
-        }else{
-            //On n'a pas de Tags
-            holder.tagsContenier.setVisibility(View.GONE);
+            holder.title.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //Log.i("Click", notes.get(position).getTitle());
+
+                    //If TITLE CLICKED
+                    /*
+                     * Send the note to next activity
+                     * */
+                    Intent intent = new Intent(ApplicationContextProvider.getContext(), NoteActivity.class);
+                    intent.putExtra("Note", notes.get(position));
+                    ApplicationContextProvider.getContext().startActivity(intent);
+                }
+            });
         }
-
-        /* holder.archiver.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.i("Note","Archiver");
-            }
-        });
-
-
-        holder.reviser.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.i("Note","Reviser");
-            }
-        });*/
-
-        holder.title.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Log.i("Click", notes.get(position).getTitle());
-
-                //If TITLE CLICKED
-                /*
-                * Send the note to next activity
-                * */
-                Intent intent = new Intent(ApplicationContextProvider.getContext(), NoteActivity.class);
-                intent.putExtra("Note", notes.get(position));
-                ApplicationContextProvider.getContext().startActivity(intent);
-            }
-        });
-
     }
 
     // Return the size of your dataset (invoked by the layout manager)

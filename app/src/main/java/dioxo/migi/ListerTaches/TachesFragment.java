@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -41,6 +42,7 @@ public class TachesFragment extends Fragment implements TachesView {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private TachesPresenter presenter;
+    private ImageView imageView;
 
 
     // TODO: Rename and change types of parameters
@@ -87,6 +89,8 @@ public class TachesFragment extends Fragment implements TachesView {
 
         presenter = new TachesPresenterImpl(this);
         presenter.onCreate();
+
+
     }
 
     @Override
@@ -99,7 +103,12 @@ public class TachesFragment extends Fragment implements TachesView {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_taches, container, false);
+        View view = inflater.inflate(R.layout.fragment_taches, container, false);
+
+        imageView = (ImageView)view.findViewById(R.id.imageVide);
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerNotes);
+        return view;
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -134,24 +143,28 @@ public class TachesFragment extends Fragment implements TachesView {
 
     @Override
     public void afficherNotes(ArrayList<Note> notes) {
-        mRecyclerView = (RecyclerView) getActivity().findViewById(R.id.recyclerNotes);
-        // use this setting to improve performance if you know that changes
-        // in content do not change the layout size of the RecyclerView
-        mRecyclerView.setHasFixedSize(true);
+        if(notes.size() > 0){
+            // use this setting to improve performance if you know that changes
+            // in content do not change the layout size of the RecyclerView
+            mRecyclerView.setHasFixedSize(true);
 
-        // use a linear layout manager
-        mLayoutManager = new LinearLayoutManager(getContext());
-        mRecyclerView.setLayoutManager(mLayoutManager);
+            // use a linear layout manager
+            mLayoutManager = new LinearLayoutManager(getContext());
+            mRecyclerView.setLayoutManager(mLayoutManager);
 
-        // specify an adapter (see also next example)
-        //ArrayList<CardNote> notes = getNotes();
-        mAdapter = new MyAdapter(notes);
-        mRecyclerView.setAdapter(mAdapter);
+            // specify an adapter (see also next example)
+            //ArrayList<CardNote> notes = getNotes();
+            mAdapter = new MyAdapter(notes);
+            mRecyclerView.setAdapter(mAdapter);
+        }else{
+            afficherBackgroundVide();
+        }
     }
 
     @Override
     public void afficherBackgroundVide() {
-
+        imageView.setVisibility(View.VISIBLE);
+        mRecyclerView.setVisibility(View.GONE);
     }
 
 
