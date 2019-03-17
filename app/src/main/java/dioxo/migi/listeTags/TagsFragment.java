@@ -1,6 +1,7 @@
 package dioxo.migi.listeTags;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -17,6 +18,8 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import androidx.fragment.app.FragmentTransaction;
+import dioxo.migi.ListerTaches.TachesFragment;
 import dioxo.migi.R;
 
 /**
@@ -110,7 +113,15 @@ public class TagsFragment extends Fragment implements TagsView{
     }
 
     private void tagClicked(String item) {
-        presenter.chercherNotesAssociates(item);
+        Fragment fragment = new TachesFragment();
+
+
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.screen_area, fragment)
+                .commit();
+
+
+        getActivity().getActionBar().setTitle("Notes : " + item);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
