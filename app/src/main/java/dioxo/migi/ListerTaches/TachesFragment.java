@@ -153,7 +153,7 @@ public class TachesFragment extends Fragment implements TachesView {
             mRecyclerView.setLayoutManager(mLayoutManager);
 
             // specify an adapter (see also next example)
-            //ArrayList<CardNote> notes = getNotes();
+            //ArrayList<CardNote> notes = getTags();
             mAdapter = new MyAdapter(notes);
             mRecyclerView.setAdapter(mAdapter);
         }else{
