@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:paddingTop="8dp"
+    android:layout_height="match_parent"
+    tools:context=".listeTags.TagsFragment">
+
+    <ListView
+        android:id="@+id/leads_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
+
+    <ImageView
+        android:id="@+id/imageVideTags"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/add"
+        android:visibility="visible"/>
+</FrameLayout>
