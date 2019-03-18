@@ -47,15 +47,21 @@ public class TachesFragment extends Fragment implements TachesView {
 
     private OnFragmentInteractionListener mListener;
 
-    boolean ResearchByTag = false;
+    public boolean ResearchByTaches = true;
     public TachesFragment() {
         // Required empty public constructor
+
+        presenter = new TachesPresenterImpl(this);
+        presenter.onCreate();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        if(!ResearchByTag){
+        Log.i("TACHES" , "VALEUR DE BOOLEAN  onResume" + ResearchByTaches );
+
+        if(ResearchByTaches){
+            Log.i("TACHES" , "BUSCAR NOTAS");
             chercherNotes();
         }
     }
@@ -86,8 +92,6 @@ public class TachesFragment extends Fragment implements TachesView {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
-        presenter = new TachesPresenterImpl(this);
-        presenter.onCreate();
 
 
     }
@@ -184,7 +188,9 @@ public class TachesFragment extends Fragment implements TachesView {
 
     public void chercherNotesSelonTag(String tag){
         Log.i("TACHES", " DENTRO DE TACHES CON TAG "+ tag);
-        ResearchByTag = true;
+        //ResearchByTaches = true;
+        //presenter = new TachesPresenterImpl(this);
+        Log.i("TACHES" , "VALEUR DE BOOLEAN method" + ResearchByTaches );
         presenter.chercherNotes(tag);
     }
 }

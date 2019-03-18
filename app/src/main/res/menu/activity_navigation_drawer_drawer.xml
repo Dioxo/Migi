@@ -5,25 +5,25 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_liste_taches"
-            android:icon="@drawable/liste"
-            android:title="@string/nav_header_liste_taches" />
-        <item
-            android:id="@+id/nav_reviser"
-            android:icon="@drawable/reviser"
-            android:title="@string/nav_header_reviser" />
-        <item
             android:id="@+id/nav_notes"
             android:icon="@drawable/notes"
             android:title="@string/nav_header_notes" />
         <item
+            android:id="@+id/nav_reviser"
+            android:icon="@drawable/reviser"
+            android:title="@string/nav_header_reviser" />
+        <!--<item
+            android:id="@+id/nav_notes"
+            android:icon="@drawable/notes"
+            android:title="@string/nav_header_notes" /> -->
+        <item
             android:id="@+id/nav_tags"
             android:icon="@drawable/dossier"
             android:title="@string/nav_header_tags" />
-        <item
+        <!--<item
             android:id="@+id/nav_corbeille"
             android:icon="@drawable/corbeille"
-            android:title="@string/nav_header_corbeille" />
+            android:title="@string/nav_header_corbeille" /> -->
     </group>
 
 

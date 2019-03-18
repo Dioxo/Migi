@@ -14,7 +14,7 @@ import dioxo.migi.Constantes;
 import dioxo.migi.libs.ApplicationContextProvider;
 
 public class NoteTagRequest extends StringRequest {
-    private static final String route = Constantes.NOTE_ROUTE;
+    private static final String route = Constantes.NOTE_TAG_REQUEST;
     private Map<String, String > parametres;
 
     public NoteTagRequest(String tag, Response.Listener<String> listener, Response.ErrorListener error){

@@ -1,12 +1,10 @@
 package dioxo.migi.NavigationDrawer;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import android.util.Log;
 import android.view.View;
@@ -19,28 +17,18 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import dioxo.migi.Authentication.AuthenticationActivity;
 import dioxo.migi.ListerTaches.TachesFragment;
 import dioxo.migi.NavigationDrawer.InterfaceCommunicationWFragments.OnButtonPressListener;
 import dioxo.migi.Note.NoteActivity;
-import dioxo.migi.Objets.Objs.CardNote;
-import dioxo.migi.Objets.Objs.ListTag;
-import dioxo.migi.Objets.Objs.Node;
-import dioxo.migi.Objets.Objs.Note;
-import dioxo.migi.Objets.Objs.Tag;
 import dioxo.migi.R;
 import dioxo.migi.listeTags.TagsFragment;
 
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 public class NavigationDrawer extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
@@ -153,7 +141,7 @@ public class NavigationDrawer extends AppCompatActivity
             transition = true;
             fragment = new TagsFragment();
             // Handle the camera action
-        } else if (id == R.id.nav_liste_taches) {
+        } else if (id == R.id.nav_notes) {
             transition = true;
             fragment = new TachesFragment();
         }/* else if (id == R.id.nav_slideshow) {
@@ -197,12 +185,15 @@ public class NavigationDrawer extends AppCompatActivity
 
         TachesFragment fragment = new TachesFragment();
 
+        fragment.ResearchByTaches = false;
+
+        Log.i("TACHES" , "VALEUR DE BOOLEAN navigation " + fragment.ResearchByTaches );
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.screen_area, fragment)
                 .commit();
         fragment.chercherNotesSelonTag(msg);
 
-        getSupportActionBar().setTitle(msg);
+        getSupportActionBar().setTitle("Tag: " + msg);
 
     }
 }
