@@ -1,7 +1,6 @@
 package dioxo.migi.ListerTaches;
 
 import android.content.Context;
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -13,14 +12,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import dioxo.migi.Authentication.AuthenticationActivity;
 import dioxo.migi.NavigationDrawer.MyAdapter;
-import dioxo.migi.NavigationDrawer.NavigationPresenter;
 import dioxo.migi.Objets.Objs.Note;
 import dioxo.migi.R;
 
@@ -51,6 +47,7 @@ public class TachesFragment extends Fragment implements TachesView {
 
     private OnFragmentInteractionListener mListener;
 
+    boolean ResearchByTag = false;
     public TachesFragment() {
         // Required empty public constructor
     }
@@ -58,7 +55,9 @@ public class TachesFragment extends Fragment implements TachesView {
     @Override
     public void onResume() {
         super.onResume();
-        chercherNotes();
+        if(!ResearchByTag){
+            chercherNotes();
+        }
     }
 
     /**
@@ -181,5 +180,11 @@ public class TachesFragment extends Fragment implements TachesView {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    public void chercherNotesSelonTag(String tag){
+        Log.i("TACHES", " DENTRO DE TACHES CON TAG "+ tag);
+        ResearchByTag = true;
+        presenter.chercherNotes(tag);
     }
 }

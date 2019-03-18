@@ -25,6 +25,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import dioxo.migi.Authentication.AuthenticationActivity;
 import dioxo.migi.ListerTaches.TachesFragment;
+import dioxo.migi.NavigationDrawer.InterfaceCommunicationWFragments.OnButtonPressListener;
 import dioxo.migi.Note.NoteActivity;
 import dioxo.migi.Objets.Objs.CardNote;
 import dioxo.migi.Objets.Objs.ListTag;
@@ -36,6 +37,7 @@ import dioxo.migi.listeTags.TagsFragment;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -44,6 +46,7 @@ public class NavigationDrawer extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
         TagsFragment.OnFragmentInteractionListener,
         TachesFragment.OnFragmentInteractionListener,
+        OnButtonPressListener,
         ViewNavigation{
 
     private RecyclerView mRecyclerView;
@@ -187,5 +190,19 @@ public class NavigationDrawer extends AppCompatActivity
     @Override
     public void goToLogin() {
         startActivity(new Intent(getApplicationContext(), AuthenticationActivity.class));
+    }
+
+    @Override
+    public void onButtonPressed(String msg) {
+
+        TachesFragment fragment = new TachesFragment();
+
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.screen_area, fragment)
+                .commit();
+        fragment.chercherNotesSelonTag(msg);
+
+        getSupportActionBar().setTitle(msg);
+
     }
 }

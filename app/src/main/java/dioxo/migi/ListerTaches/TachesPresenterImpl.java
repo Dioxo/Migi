@@ -44,6 +44,11 @@ class TachesPresenterImpl implements TachesPresenter {
     }
 
     @Override
+    public void chercherNotes(String tag) {
+        repository.chercherNotes(tag);
+    }
+
+    @Override
     public void chercherNotes() {
         repository.chercherNotes();
     }

@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 import dioxo.migi.Constantes;
 import dioxo.migi.Objets.Java_Request.NoteRequest;
+import dioxo.migi.Objets.Java_Request.NoteTagRequest;
 import dioxo.migi.Objets.Objs.Note;
 import dioxo.migi.libs.ApplicationContextProvider;
 import dioxo.migi.libs.EventBus;
@@ -53,6 +54,37 @@ class TachesRepositoryImpl implements TachesRepository {
 
 
         NoteRequest noteRequest = new NoteRequest(responseSuccess,errorListener);
+        RequestQueue request = Volley.newRequestQueue(ApplicationContextProvider.getContext());
+
+        request.add(noteRequest);
+    }
+
+    @Override
+    public void chercherNotes(String tag) {
+        Log.i("JSON","entró");
+
+        Response.Listener<String> responseSuccess = response1 -> {
+            try {
+                Log.i("JSON","response");
+                JSONArray jsonObject = new JSONArray(response1);
+                ArrayList<Note> notes = fromJson(jsonObject);
+                System.out.println(notes);
+
+                TachesEvent event = new TachesEvent(TachesEvent.NOTES_SUCCESS,notes);
+                eventBus.post(event);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        };
+
+        Response.ErrorListener errorListener = error -> {
+            Log.i("JSON","Error");
+            TachesEvent event = new TachesEvent(TachesEvent.NOTES_ERROR);
+            eventBus.post(event);
+        };
+
+
+        NoteTagRequest noteRequest = new NoteTagRequest(tag, responseSuccess,errorListener);
         RequestQueue request = Volley.newRequestQueue(ApplicationContextProvider.getContext());
 
         request.add(noteRequest);

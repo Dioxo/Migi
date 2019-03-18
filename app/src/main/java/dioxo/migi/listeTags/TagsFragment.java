@@ -20,6 +20,7 @@ import java.util.ArrayList;
 
 import androidx.fragment.app.FragmentTransaction;
 import dioxo.migi.ListerTaches.TachesFragment;
+import dioxo.migi.NavigationDrawer.InterfaceCommunicationWFragments.OnButtonPressListener;
 import dioxo.migi.R;
 
 /**
@@ -100,11 +101,6 @@ public class TagsFragment extends Fragment implements TagsView{
         mLeadsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-
-                Toast.makeText(getActivity(),
-                        "Iniciar screen de detalle para: \n" + mLeadsAdapter.getItem(position),
-                        Toast.LENGTH_SHORT).show();
-
                 tagClicked(mLeadsAdapter.getItem(position));
 
             }
@@ -113,15 +109,8 @@ public class TagsFragment extends Fragment implements TagsView{
     }
 
     private void tagClicked(String item) {
-        Fragment fragment = new TachesFragment();
-
-
-        getActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.screen_area, fragment)
-                .commit();
-
-
-        getActivity().getActionBar().setTitle("Notes : " + item);
+        OnButtonPressListener buttonListener = (OnButtonPressListener) getActivity();
+        buttonListener.onButtonPressed(item);
     }
 
     // TODO: Rename method, update argument and hook method into UI event

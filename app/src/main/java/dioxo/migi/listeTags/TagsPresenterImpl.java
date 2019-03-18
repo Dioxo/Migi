@@ -57,4 +57,9 @@ class TagsPresenterImpl implements TagsPresenter {
         repository.chercherTags();
     }
 
+    @Override
+    public void chercherNotesAssociates(String tag) {
+
+    }
+
 }

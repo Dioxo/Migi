@@ -11,6 +11,7 @@ public interface TachesPresenter {
     void onEventMainThread(TachesEvent event);
 
 
+    void chercherNotes(String tag);
     void chercherNotes();
     void afficherNotes(ArrayList<Note> notes);
     void afficherBackgroundVide();
