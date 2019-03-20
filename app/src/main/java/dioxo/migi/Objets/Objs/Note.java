@@ -114,7 +114,7 @@ public class Note implements Serializable
             b.idNote = jsonObject.getString("id_note");
             b.title = jsonObject.getString("title");
             b.description = jsonObject.getString("description");
-            
+
             b.have_revision = !jsonObject.getString("have_revision").equals("0");
 
             if(jsonObject.has("Tags")){
