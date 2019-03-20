@@ -97,6 +97,11 @@ class TachesRepositoryImpl implements TachesRepository {
         eventBus.post(new TachesEvent(TachesEvent.SESSION_CLOSE_SUCCESS));
     }
 
+    @Override
+    public void chercherNotesRevision() {
+        
+    }
+
     private ArrayList<Note> fromJson(JSONArray jsonObject) {
         JSONObject noteJSON;
         ArrayList<Note> notes = new ArrayList<Note>(jsonObject.length());
