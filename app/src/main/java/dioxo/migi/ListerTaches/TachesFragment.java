@@ -193,4 +193,8 @@ public class TachesFragment extends Fragment implements TachesView {
         Log.i("TACHES" , "VALEUR DE BOOLEAN method" + ResearchByTaches );
         presenter.chercherNotes(tag);
     }
+
+    public void chercherNotesSelonRevision(){
+        presenter.chercherNotesRevision();
+    }
 }
