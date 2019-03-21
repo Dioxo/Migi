@@ -90,6 +90,11 @@ class NotePresenterImpl implements NotePresenter {
     }
 
     @Override
+    public void reviserNote(String note) {
+
+    }
+
+    @Override
     public void updateNote(Note note) {
         showProgressBar();
         disableInputs();

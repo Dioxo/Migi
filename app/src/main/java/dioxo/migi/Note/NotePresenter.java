@@ -20,4 +20,6 @@ public interface NotePresenter {
     void chechIfNoteClicked(Serializable note);
 
     void ajouterTag(String tagNom);
+
+    void reviserNote(String note);
 }

@@ -25,12 +25,14 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import dioxo.migi.Constantes;
 import dioxo.migi.Objets.Objs.Note;
+import dioxo.migi.Objets.Objs.ReviserDialog;
 import dioxo.migi.Objets.Objs.TagDialog;
 import dioxo.migi.Objets.Objs.TagDialog.TagDialogListener;
 import dioxo.migi.R;
 import dioxo.migi.libs.ApplicationContextProvider;
 
-public class NoteActivity extends AppCompatActivity implements NoteView, TagDialogListener {
+public class NoteActivity extends AppCompatActivity implements NoteView, TagDialogListener ,
+        ReviserDialog.ReviserDialogListener {
 
     @BindView(R.id.txtTitle)
     EditText txtTitle;
@@ -311,6 +313,8 @@ public class NoteActivity extends AppCompatActivity implements NoteView, TagDial
 
     @OnClick(R.id.fab_reviser)
     public void onFabReviserClicked() {
+        ReviserDialog tagDialog = new ReviserDialog();
+        tagDialog.show(getSupportFragmentManager(), "Reviser Dialog");
     }
 
     @OnClick(R.id.fab)
@@ -348,6 +352,14 @@ public class NoteActivity extends AppCompatActivity implements NoteView, TagDial
     public void applyText(String tagNom) {
         if(noteAlreadyExist) {
             presenter.ajouterTag(tagNom);
+        }
+    }
+
+
+    @Override
+    public void applicarTexto(String qualification) {
+        if(noteAlreadyExist){
+            Log.i("Note qualification", qualification);
         }
     }
 }
