@@ -42,8 +42,6 @@ public class NoteActivity extends AppCompatActivity implements NoteView, TagDial
     CoordinatorLayout coordinator;
     @BindView(R.id.tags_contenier)
     LinearLayout tagsContenier;
-    @BindView(R.id.fab_conver_tache)
-    FloatingActionButton fabConverTache;
     @BindView(R.id.fab_reviser)
     FloatingActionButton fabReviser;
     @BindView(R.id.fab)
@@ -309,9 +307,7 @@ public class NoteActivity extends AppCompatActivity implements NoteView, TagDial
 
     }
 
-    @OnClick(R.id.fab_conver_tache)
-    public void onFabConverTacheClicked() {
-    }
+
 
     @OnClick(R.id.fab_reviser)
     public void onFabReviserClicked() {
@@ -323,23 +319,19 @@ public class NoteActivity extends AppCompatActivity implements NoteView, TagDial
         if (isOpen) {
 
             fabReviser.startAnimation(fabClose);
-            fabConverTache.startAnimation(fabClose);
             ajouterTag.startAnimation(fabClose);
             fab.startAnimation(fabRotateAntiClockwise);
 
             fabReviser.setClickable(false);
-            fabConverTache.setClickable(false);
             ajouterTag.setClickable(false);
             isOpen = false;
 
         } else {
             fabReviser.startAnimation(fabOpen);
-            fabConverTache.startAnimation(fabOpen);
             ajouterTag.startAnimation(fabOpen);
             fab.startAnimation(fabRotateClockwise);
 
             fabReviser.setClickable(true);
-            fabConverTache.setClickable(true);
             ajouterTag.setClickable(true);
             isOpen = true;
         }

@@ -29,19 +29,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_marginRight="@dimen/fab_margin"
-        android:layout_marginBottom="180dp"
-        android:src="@android:drawable/ic_menu_add"
-        android:visibility="invisible"
-        app:backgroundTint="@color/tag_yellow"/>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_conver_tache"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_marginRight="@dimen/fab_margin"
         android:layout_marginBottom="130dp"
-        android:src="@drawable/liste"
+        android:src="@android:drawable/ic_menu_add"
         android:visibility="invisible"
         app:backgroundTint="@color/tag_yellow"/>
 

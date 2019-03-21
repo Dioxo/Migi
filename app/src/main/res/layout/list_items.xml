@@ -40,57 +40,6 @@
         </HorizontalScrollView>
 
 
-       <!-- <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/tags_contenier"
-            android:layout_marginTop="12dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/txt_Tag"
-                android:layout_width="90dp"
-                android:layout_height="35dp"
-                android:layout_marginEnd="8dp"
-                android:gravity="center"
-                android:background="@drawable/tag_form"
-                android:backgroundTint="@color/tag_purple"
-                android:textColor="@color/secondaryTextColor" />
-
-
-            <TextView
-                android:id="@+id/txt_Tag1"
-                android:layout_width="90dp"
-                android:layout_height="35dp"
-                android:layout_marginEnd="8dp"
-                android:gravity="center"
-                android:background="@drawable/tag_form"
-                android:backgroundTint="@color/tag_purple"
-                android:textColor="@color/secondaryTextColor" />
-
-            <TextView
-                android:id="@+id/txt_Tag2"
-                android:layout_width="90dp"
-                android:layout_height="35dp"
-                android:gravity="center"
-                android:background="@drawable/tag_form"
-                android:backgroundTint="@color/tag_yellow"
-                android:layout_marginEnd="8dp"
-                android:textColor="@color/secondaryTextColor"/>
-
-            <TextView
-                android:id="@+id/txt_Tag3"
-                android:layout_width="90dp"
-                android:layout_height="35dp"
-                android:background="@drawable/tag_form"
-                android:backgroundTint="@color/tag_gray"
-                android:layout_marginEnd="8dp"
-                android:gravity="center"
-                android:textColor="@color/secondaryTextColor" />
-
-
-        </LinearLayout>
-        -->
         <TextView
             android:id="@+id/txtDescription"
             android:layout_width="match_parent"
@@ -104,13 +53,6 @@
             android:layout_marginTop="12dp"
             android:orientation="horizontal">
 
-            <!--<Button
-                android:id="@+id/btn_archiver"
-                android:layout_width="90dp"
-                android:layout_height="35dp"
-                android:background="#FFFFFF"
-                android:textColor="#6202EE"
-                android:text="Archiver"/>-->
 
             <Button
                 android:id="@+id/btn_reviser"
@@ -118,7 +60,6 @@
                 android:layout_height="35dp"
                 android:background="#FFFFFF"
                 android:textColor="#6202EE"
-                android:visibility="gone"
                 android:text="Reviser"/>
 
 

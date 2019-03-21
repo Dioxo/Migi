@@ -115,7 +115,10 @@ public class Note implements Serializable
             b.title = jsonObject.getString("title");
             b.description = jsonObject.getString("description");
 
-            b.have_revision = !jsonObject.getString("have_revision").equals("0");
+            //Log.i("have_revision", b.title) ;
+            //Log.i("have_revision", jsonObject.getString("have_revision")) ;
+            //Log.i("have_revision", jsonObject.getString("have_revision").equals("1") + " ") ;
+            b.have_revision = !jsonObject.getString("have_revision").equals("1");
 
             if(jsonObject.has("Tags")){
                 b.tags = JsonTags(jsonObject.getJSONArray("Tags"));

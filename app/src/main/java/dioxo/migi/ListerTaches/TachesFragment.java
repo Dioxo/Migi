@@ -16,7 +16,6 @@ import java.util.ArrayList;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import dioxo.migi.NavigationDrawer.MyAdapter;
 import dioxo.migi.Objets.Objs.Note;
 import dioxo.migi.R;
 

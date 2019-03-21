@@ -201,7 +201,7 @@ public class NavigationDrawer extends AppCompatActivity
                 .commit();
         fragment.chercherNotesSelonTag(msg);
 
-        getSupportActionBar().setTitle("Tag: " + msg);
+        getSupportActionBar().setTitle("Tag : " + msg);
 
     }
 }
