@@ -47,7 +47,7 @@
             android:layout_marginTop="12dp"
             android:maxLines="6"
             />
-        <LinearLayout
+        <!--<LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
@@ -63,7 +63,7 @@
                 android:text="Reviser"/>
 
 
-        </LinearLayout>
+        </LinearLayout>-->
 
     </LinearLayout>
 

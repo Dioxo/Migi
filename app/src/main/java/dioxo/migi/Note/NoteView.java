@@ -19,6 +19,7 @@ public interface NoteView {
     void update(boolean success);
     void insert(boolean success);
     void delete(boolean success);
+    void reviserNote(boolean success);
 
     void refreshTags(String tagName);
 }

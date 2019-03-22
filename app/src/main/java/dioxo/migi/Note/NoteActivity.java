@@ -300,6 +300,20 @@ public class NoteActivity extends AppCompatActivity implements NoteView, TagDial
     }
 
     @Override
+    public void reviserNote(boolean success) {
+        if(success){
+            Snackbar snackbar = Snackbar
+                    .make(coordinator, "Les actualisations ont bien été enregistrés", Snackbar.LENGTH_LONG);
+            snackbar.show();
+        } else {
+            Snackbar snackbar = Snackbar
+                    .make(coordinator, "Erreur: impossible d'enregistrer les modifications", Snackbar.LENGTH_LONG);
+            snackbar.show();
+        }
+    }
+
+
+    @Override
     public void refreshTags(String tagName) {
         LinearLayout tags_corp = (LinearLayout) LayoutInflater.from(ApplicationContextProvider.getContext()).inflate(R.layout.tags_contenier, null);
         TextView textTag = tags_corp.findViewById(R.id.txt_Tag);
@@ -360,6 +374,7 @@ public class NoteActivity extends AppCompatActivity implements NoteView, TagDial
     public void applicarTexto(String qualification) {
         if(noteAlreadyExist){
             Log.i("Note qualification", qualification);
+            presenter.reviserNote(qualification);
         }
     }
 }

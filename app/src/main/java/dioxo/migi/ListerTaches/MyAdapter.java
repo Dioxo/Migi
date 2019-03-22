@@ -27,7 +27,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         public TextView title,description;
-        public Button reviser;
+        //public Button reviser;
         public LinearLayout tagsContenier;
         public LinearLayout tags;
 
@@ -36,7 +36,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             title =  v.findViewById(R.id.txtTitle);
             description =  v.findViewById(R.id.txtDescription);
             tagsContenier = v.findViewById(R.id.tags_contenier);
-            reviser = v.findViewById(R.id.btn_reviser);
+            //reviser = v.findViewById(R.id.btn_reviser);
         }
     }
 
@@ -73,7 +73,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             holder.description.setText(notes.get(position).getDescription());
 
             if(notes.get(position).isHave_revision()){
-                holder.reviser.setVisibility(View.GONE);
+                //holder.reviser.setVisibility(View.GONE);
             }
 
             //COdigo para implementar los tags, por ahora sin implementación
