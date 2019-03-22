@@ -5,4 +5,6 @@ public interface TachesRepository {
     void chercherNotes(String tag);
 
     void closeSession();
+
+    void chercherNotesRevision();
 }

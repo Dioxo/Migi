@@ -144,9 +144,17 @@ public class NavigationDrawer extends AppCompatActivity
         } else if (id == R.id.nav_notes) {
             transition = true;
             fragment = new TachesFragment();
-        }/* else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_reviser) {
+            TachesFragment reviser = new TachesFragment();
+            reviser.ResearchByTaches = false;
+            item.setChecked(true);
+            getSupportActionBar().setTitle(item.getTitle());
 
-        } else if (id == R.id.nav_manage) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.screen_area, reviser)
+                    .commit();
+            reviser.chercherNotesSelonRevision();
+        }/* else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {
 
@@ -193,7 +201,7 @@ public class NavigationDrawer extends AppCompatActivity
                 .commit();
         fragment.chercherNotesSelonTag(msg);
 
-        getSupportActionBar().setTitle("Tag: " + msg);
+        getSupportActionBar().setTitle("Tag : " + msg);
 
     }
 }

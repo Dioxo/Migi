@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -40,7 +41,7 @@ public class TagsFragment extends Fragment implements TagsView{
     ListView mLeadsList;
     ArrayAdapter<String> mLeadsAdapter;
     private TagsPresenter presenter;
-    ImageView imageVide;
+    private RelativeLayout conteinerNotesVides;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -94,7 +95,7 @@ public class TagsFragment extends Fragment implements TagsView{
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_tags, container, false);
 
-        imageVide = view.findViewById(R.id.imageVideTags);
+        conteinerNotesVides = view.findViewById(R.id.conteinerNotesVides);
         mLeadsList = view.findViewById(R.id.leads_list);
 
 
@@ -141,14 +142,14 @@ public class TagsFragment extends Fragment implements TagsView{
     @Override
     public void afficherTagsVide() {
         mLeadsList.setVisibility(View.GONE);
-        imageVide.setVisibility(View.VISIBLE);
+        conteinerNotesVides.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void afficherTags(ArrayList<String> tags) {
 
         mLeadsList.setVisibility(View.VISIBLE);
-        imageVide.setVisibility(View.GONE);
+        conteinerNotesVides.setVisibility(View.GONE);
 
         mLeadsAdapter = new ArrayAdapter<>(
                 getActivity(),
