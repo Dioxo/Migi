@@ -17,4 +17,6 @@ public interface TachesPresenter {
     void afficherBackgroundVide();
 
     void closeSession();
+
+    void chercherNotesRevision();
 }

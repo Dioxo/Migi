@@ -8,4 +8,6 @@ public interface NoteRepository {
     void deleteNote();
 
     void ajouterTag(String tagNom);
+
+    void reviserNote(String note);
 }
