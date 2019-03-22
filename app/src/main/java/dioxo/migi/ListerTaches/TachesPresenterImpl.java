@@ -71,4 +71,9 @@ class TachesPresenterImpl implements TachesPresenter {
     public void closeSession() {
         repository.closeSession();
     }
+
+    @Override
+    public void chercherNotesRevision() {
+        repository.chercherNotesRevision();
+    }
 }

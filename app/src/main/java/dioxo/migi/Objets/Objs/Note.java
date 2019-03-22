@@ -28,6 +28,9 @@ public class Note implements Serializable
     @SerializedName("Tags ")
     @Expose
     private List<Tags> tags = null;
+    @SerializedName("have_revision")
+    @Expose
+    private boolean have_revision;
     private final static long serialVersionUID = -1081055512385406330L;
 
     /**
@@ -44,12 +47,13 @@ public class Note implements Serializable
      * @param description
      * @param idNote
      */
-    public Note(String idNote, String title, String description, List<Tags> tags) {
+    public Note(String idNote, String title, String description, List<Tags> tags, boolean have_revision) {
         super();
         this.idNote = idNote;
         this.title = title;
         this.description = description;
         this.tags = tags;
+        this.have_revision = have_revision;
     }
 
     public String getIdNote() {
@@ -80,6 +84,14 @@ public class Note implements Serializable
         this.tags = tags;
     }
 
+    public boolean isHave_revision() {
+        return have_revision;
+    }
+
+    public void setHave_revision(boolean have_revision) {
+        this.have_revision = have_revision;
+    }
+
     @Override
     public String toString() {
         Log.i("JSON", "notes.toString");
@@ -90,6 +102,7 @@ public class Note implements Serializable
                 "idNote='" + idNote + '\'' +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
+                ", have_revision='" + have_revision + '\'' +
                 ", tags=" + tags +
                 '}';
     }
@@ -101,6 +114,11 @@ public class Note implements Serializable
             b.idNote = jsonObject.getString("id_note");
             b.title = jsonObject.getString("title");
             b.description = jsonObject.getString("description");
+
+            //Log.i("have_revision", b.title) ;
+            //Log.i("have_revision", jsonObject.getString("have_revision")) ;
+            //Log.i("have_revision", jsonObject.getString("have_revision").equals("1") + " ") ;
+            b.have_revision = !jsonObject.getString("have_revision").equals("1");
 
             if(jsonObject.has("Tags")){
                 b.tags = JsonTags(jsonObject.getJSONArray("Tags"));

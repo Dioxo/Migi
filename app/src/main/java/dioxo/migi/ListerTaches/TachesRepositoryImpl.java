@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 import dioxo.migi.Constantes;
 import dioxo.migi.Objets.Java_Request.NoteRequest;
+import dioxo.migi.Objets.Java_Request.NoteRevision;
 import dioxo.migi.Objets.Java_Request.NoteTagRequest;
 import dioxo.migi.Objets.Objs.Note;
 import dioxo.migi.libs.ApplicationContextProvider;
@@ -95,6 +96,36 @@ class TachesRepositoryImpl implements TachesRepository {
         SharedPreferences preferences =ApplicationContextProvider.getContext().getSharedPreferences(Constantes.ID_USER, 0);
         preferences.edit().remove(Constantes.ID_USER).apply();
         eventBus.post(new TachesEvent(TachesEvent.SESSION_CLOSE_SUCCESS));
+    }
+
+    @Override
+    public void chercherNotesRevision() {
+
+        Response.Listener<String> responseSuccess = response1 -> {
+            try {
+                Log.i("JSON","response");
+                JSONArray jsonObject = new JSONArray(response1);
+                ArrayList<Note> notes = fromJson(jsonObject);
+                System.out.println(notes);
+
+                TachesEvent event = new TachesEvent(TachesEvent.NOTES_SUCCESS,notes);
+                eventBus.post(event);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        };
+
+        Response.ErrorListener errorListener = error -> {
+            Log.i("JSON","Error");
+            TachesEvent event = new TachesEvent(TachesEvent.NOTES_ERROR);
+            eventBus.post(event);
+        };
+
+
+        NoteRevision noteRequest = new NoteRevision( responseSuccess,errorListener);
+        RequestQueue request = Volley.newRequestQueue(ApplicationContextProvider.getContext());
+
+        request.add(noteRequest);
     }
 
     private ArrayList<Note> fromJson(JSONArray jsonObject) {

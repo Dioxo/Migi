@@ -25,12 +25,14 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import dioxo.migi.Constantes;
 import dioxo.migi.Objets.Objs.Note;
+import dioxo.migi.Objets.Objs.ReviserDialog;
 import dioxo.migi.Objets.Objs.TagDialog;
 import dioxo.migi.Objets.Objs.TagDialog.TagDialogListener;
 import dioxo.migi.R;
 import dioxo.migi.libs.ApplicationContextProvider;
 
-public class NoteActivity extends AppCompatActivity implements NoteView, TagDialogListener {
+public class NoteActivity extends AppCompatActivity implements NoteView, TagDialogListener ,
+        ReviserDialog.ReviserDialogListener {
 
     @BindView(R.id.txtTitle)
     EditText txtTitle;
@@ -42,8 +44,6 @@ public class NoteActivity extends AppCompatActivity implements NoteView, TagDial
     CoordinatorLayout coordinator;
     @BindView(R.id.tags_contenier)
     LinearLayout tagsContenier;
-    @BindView(R.id.fab_conver_tache)
-    FloatingActionButton fabConverTache;
     @BindView(R.id.fab_reviser)
     FloatingActionButton fabReviser;
     @BindView(R.id.fab)
@@ -300,6 +300,20 @@ public class NoteActivity extends AppCompatActivity implements NoteView, TagDial
     }
 
     @Override
+    public void reviserNote(boolean success) {
+        if(success){
+            Snackbar snackbar = Snackbar
+                    .make(coordinator, "Les actualisations ont bien été enregistrés", Snackbar.LENGTH_LONG);
+            snackbar.show();
+        } else {
+            Snackbar snackbar = Snackbar
+                    .make(coordinator, "Erreur: impossible d'enregistrer les modifications", Snackbar.LENGTH_LONG);
+            snackbar.show();
+        }
+    }
+
+
+    @Override
     public void refreshTags(String tagName) {
         LinearLayout tags_corp = (LinearLayout) LayoutInflater.from(ApplicationContextProvider.getContext()).inflate(R.layout.tags_contenier, null);
         TextView textTag = tags_corp.findViewById(R.id.txt_Tag);
@@ -309,12 +323,12 @@ public class NoteActivity extends AppCompatActivity implements NoteView, TagDial
 
     }
 
-    @OnClick(R.id.fab_conver_tache)
-    public void onFabConverTacheClicked() {
-    }
+
 
     @OnClick(R.id.fab_reviser)
     public void onFabReviserClicked() {
+        ReviserDialog tagDialog = new ReviserDialog();
+        tagDialog.show(getSupportFragmentManager(), "Reviser Dialog");
     }
 
     @OnClick(R.id.fab)
@@ -323,23 +337,19 @@ public class NoteActivity extends AppCompatActivity implements NoteView, TagDial
         if (isOpen) {
 
             fabReviser.startAnimation(fabClose);
-            fabConverTache.startAnimation(fabClose);
             ajouterTag.startAnimation(fabClose);
             fab.startAnimation(fabRotateAntiClockwise);
 
             fabReviser.setClickable(false);
-            fabConverTache.setClickable(false);
             ajouterTag.setClickable(false);
             isOpen = false;
 
         } else {
             fabReviser.startAnimation(fabOpen);
-            fabConverTache.startAnimation(fabOpen);
             ajouterTag.startAnimation(fabOpen);
             fab.startAnimation(fabRotateClockwise);
 
             fabReviser.setClickable(true);
-            fabConverTache.setClickable(true);
             ajouterTag.setClickable(true);
             isOpen = true;
         }
@@ -356,6 +366,15 @@ public class NoteActivity extends AppCompatActivity implements NoteView, TagDial
     public void applyText(String tagNom) {
         if(noteAlreadyExist) {
             presenter.ajouterTag(tagNom);
+        }
+    }
+
+
+    @Override
+    public void applicarTexto(String qualification) {
+        if(noteAlreadyExist){
+            Log.i("Note qualification", qualification);
+            presenter.reviserNote(qualification);
         }
     }
 }

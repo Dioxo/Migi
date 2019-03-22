@@ -15,6 +15,10 @@ class NoteEvent {
 
     public static final int TAG_INSERT_SUCCESS = 6;
     public static final int TAG_INSERT_ERROR = 7;
+
+    public static final int REVISER_NOTE_SUCCESS = 8;
+    public static final int REVISER_NOTE_ERROR = 9;
+
     private int eventType;
     private String message;
 

@@ -61,6 +61,17 @@ class NotePresenterImpl implements NotePresenter {
                     view.insert(true);
                     view.refreshTags(event.getMessage());
                     break;
+
+                case NoteEvent.REVISER_NOTE_SUCCESS:
+                    view.reviserNote(true);
+                    break;
+
+
+                case NoteEvent.REVISER_NOTE_ERROR:
+                    view.reviserNote(false);
+                    break;
+
+
             }
 
         }
@@ -87,6 +98,11 @@ class NotePresenterImpl implements NotePresenter {
     @Override
     public void ajouterTag(String tagNom) {
         noteRepository.ajouterTag(tagNom);
+    }
+
+    @Override
+    public void reviserNote(String qualification) {
+        noteRepository.reviserNote(qualification);
     }
 
     @Override
