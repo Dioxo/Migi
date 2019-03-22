@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 
@@ -37,7 +38,9 @@ public class TachesFragment extends Fragment implements TachesView {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private TachesPresenter presenter;
-    private ImageView imageView;
+    private RelativeLayout conteinerNotesVides;
+    private RelativeLayout conteinerNotNotesAReviser;
+    public boolean ResearchByRevision= false;
 
 
     // TODO: Rename and change types of parameters
@@ -107,8 +110,9 @@ public class TachesFragment extends Fragment implements TachesView {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_taches, container, false);
 
-        imageView = (ImageView)view.findViewById(R.id.imageVide);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerNotes);
+        conteinerNotesVides = view.findViewById(R.id.conteinerNotesVides);
+        conteinerNotNotesAReviser = view.findViewById(R.id.conteinerNotNotesAReviser);
         return view;
 
     }
@@ -159,14 +163,29 @@ public class TachesFragment extends Fragment implements TachesView {
             mAdapter = new MyAdapter(notes);
             mRecyclerView.setAdapter(mAdapter);
         }else{
-            afficherBackgroundVide();
+            if(ResearchByRevision){
+                afficherBackgroundVide2();
+            }else{
+                afficherBackgroundVide();
+            }
         }
+    }
+
+    private void afficherBackgroundVide2() {
+        conteinerNotNotesAReviser.setVisibility(View.VISIBLE);
+        mRecyclerView.setVisibility(View.GONE);
+        conteinerNotesVides.setVisibility(View.GONE);
+
     }
 
     @Override
     public void afficherBackgroundVide() {
-        imageView.setVisibility(View.VISIBLE);
-        mRecyclerView.setVisibility(View.GONE);
+        if(ResearchByRevision){
+            afficherBackgroundVide2();
+        }else{
+            conteinerNotesVides.setVisibility(View.VISIBLE);
+            mRecyclerView.setVisibility(View.GONE);
+        }
     }
 
 
@@ -195,5 +214,6 @@ public class TachesFragment extends Fragment implements TachesView {
 
     public void chercherNotesSelonRevision(){
         presenter.chercherNotesRevision();
+        ResearchByRevision = true;
     }
 }

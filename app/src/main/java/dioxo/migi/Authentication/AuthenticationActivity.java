@@ -72,6 +72,7 @@ public class AuthenticationActivity extends AppCompatActivity implements Authent
 
 
         Intent intent = new Intent(this, NavigationDrawer.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
     }
 
