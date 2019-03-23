@@ -1,22 +1,22 @@
 package dioxo.migi.Authentication;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import dioxo.migi.Constantes;
 import dioxo.migi.NavigationDrawer.NavigationDrawer;
 import dioxo.migi.R;
+import dioxo.migi.Register.RegisterActivity;
+import dioxo.migi.Register.RegisterView;
 
 public class AuthenticationActivity extends AppCompatActivity implements Authentication_View {
 
@@ -28,6 +28,8 @@ public class AuthenticationActivity extends AppCompatActivity implements Authent
     Button btnLogin;
     @BindView(R.id.progressBar)
     ProgressBar progressBar;
+    @BindView(R.id.register)
+    TextView register;
     private Authentication_Presenter presenter;
 
 
@@ -36,14 +38,12 @@ public class AuthenticationActivity extends AppCompatActivity implements Authent
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
-        
+
         presenter = new Authentication_Presenter_Impl(this);
         presenter.onCreate();
         presenter.checkAlreadyConnected();
         hideProgressBar();
 
-        edTxtUser.setText("a@a.com");
-        edTxtPassword.setText("123456");
     }
 
     @Override
@@ -92,14 +92,19 @@ public class AuthenticationActivity extends AppCompatActivity implements Authent
         edTxtPassword.setError(error);
     }
 
+    private void effacerText() {
+        edTxtPassword.setText("");
+        edTxtUser.setText("");
+    }
+
     @OnClick(R.id.btnLogin)
-    public void onViewClicked() {
+    public void onBtnLoginClicked() {
         presenter.confirmerMDP(edTxtUser.getText().toString(), edTxtPassword.getText().toString());
         effacerText();
     }
 
-    private void effacerText(){
-        edTxtPassword.setText("");
-        edTxtUser.setText("");
+    @OnClick(R.id.register)
+    public void onRegisterClicked() {
+        startActivity(new Intent(this, RegisterActivity.class));
     }
 }

@@ -148,16 +148,20 @@ public class TagsFragment extends Fragment implements TagsView{
     @Override
     public void afficherTags(ArrayList<String> tags) {
 
-        mLeadsList.setVisibility(View.VISIBLE);
-        conteinerNotesVides.setVisibility(View.GONE);
+        if(tags.size() > 0 ) {
 
-        mLeadsAdapter = new ArrayAdapter<>(
-                getActivity(),
-                android.R.layout.simple_list_item_1,
-                tags);
+            mLeadsList.setVisibility(View.VISIBLE);
+            conteinerNotesVides.setVisibility(View.GONE);
 
-        mLeadsList.setAdapter(mLeadsAdapter);
+            mLeadsAdapter = new ArrayAdapter<>(
+                    getActivity(),
+                    android.R.layout.simple_list_item_1,
+                    tags);
 
+            mLeadsList.setAdapter(mLeadsAdapter);
+        }else{
+            afficherTagsVide();
+        }
     }
 
     /**
