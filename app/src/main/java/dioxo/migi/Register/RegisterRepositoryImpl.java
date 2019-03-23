@@ -1,5 +1,7 @@
 package dioxo.migi.Register;
 
+import android.util.Log;
+
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
@@ -22,9 +24,12 @@ class RegisterRepositoryImpl implements RegisterRepository {
 
     @Override
     public void registerUser(User user) {
+        Log.i("Register", "repository");
         Response.Listener<String> success = response -> {
             try {
                 JSONObject jsonObject = new JSONObject(response);
+                Log.i("Register", response);
+
                 RegisterEvent registerEvent;
 
                 // si l'actualisation est effectuée

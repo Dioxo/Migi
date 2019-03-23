@@ -28,8 +28,8 @@ class RegisterPresenterImpl implements RegisterPresenter {
         eventBus.unregister(this);
     }
 
-    @Subscribe
     @Override
+    @Subscribe
     public void onEventMainThread(RegisterEvent registerEvent) {
         if(view != null) {
             switch (registerEvent.getEventType()) {

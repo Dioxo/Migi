@@ -7,7 +7,7 @@ public interface RegisterPresenter {
 
     void onDestroy();
 
-    void onEventMainThread(RegisterEvent authenticationEvent);
+    void onEventMainThread(RegisterEvent registerEvent);
 
     void registerUser(User user);
 }

@@ -3,6 +3,7 @@ package dioxo.migi.Register;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -41,6 +42,13 @@ public class RegisterActivity extends AppCompatActivity implements RegisterView 
         ButterKnife.bind(this);
 
         presenter = new RegisterPresenterImpl(this);
+        presenter.onCreate();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        presenter.onDestroy();
     }
 
     @Override
@@ -97,6 +105,7 @@ public class RegisterActivity extends AppCompatActivity implements RegisterView 
         if(!TextUtils.isEmpty(edtEmail.getText()) ||
                 !TextUtils.isEmpty(edTxtUser.getText()) ||
                 !TextUtils.isEmpty(edTxtPassword.getText())){
+            Log.i("Register", "enviar info");
             presenter.registerUser(new User(edtEmail.getText().toString(),
                                     edTxtPassword.getText().toString(),
                                     edTxtUser.getText().toString()));
