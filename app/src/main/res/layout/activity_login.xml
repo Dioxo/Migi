@@ -28,7 +28,7 @@
         android:layout_marginTop="15dp"
         android:layout_marginEnd="8dp"
         android:background="@drawable/edit_nom_user"
-        android:hint="@string/activity_login_txt_username"
+        android:hint="@string/activity_login_txt_email"
         android:inputType="textEmailAddress"
         android:paddingStart="60dp"
         app:layout_constraintEnd_toEndOf="parent"
