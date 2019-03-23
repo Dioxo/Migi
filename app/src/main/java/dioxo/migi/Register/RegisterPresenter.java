@@ -3,8 +3,6 @@ package dioxo.migi.Register;
 import dioxo.migi.Objets.Objs.User;
 
 public interface RegisterPresenter {
-    void goToNextPage();
-
     void onCreate();
 
     void onDestroy();
