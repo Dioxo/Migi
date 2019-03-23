@@ -22,7 +22,7 @@
         <activity
             android:name=".NavigationDrawer.NavigationDrawer"
             android:label="@string/title_activity_navigation_drawer"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".Note.NoteActivity"
             android:label="@string/title_activity_note"
@@ -32,6 +32,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="dioxo.migi.NavigationDrawer.NavigationDrawer" />
         </activity>
+        <activity android:name=".Register.RegisterActivity"></activity>
     </application>
 
 </manifest>
