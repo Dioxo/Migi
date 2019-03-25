@@ -25,8 +25,7 @@ You will need Android Studio, a server running with MySQL, PHP and Nginx or Apac
 
 Or
 
-[LEMP]
-(https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-ubuntu-18-04)
+[LEMP](https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-ubuntu-18-04)
 
 
 ### Installing
@@ -57,4 +56,4 @@ Para el versionamiento, he usado el sistema git con el modelo de ramas descrito 
 
 ## License
 
-This project is licensed under the GNU GENERAL PUBLIC LICENSE see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the GNU GENERAL PUBLIC LICENSE see the [LICENSE.md](LICENSE) file for details
