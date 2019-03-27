@@ -8,6 +8,7 @@ import org.greenrobot.eventbus.Subscribe;
 import java.util.ArrayList;
 
 import dioxo.migi.Objets.Objs.Note;
+import dioxo.migi.Objets.Objs.User;
 import dioxo.migi.libs.EventBus;
 import dioxo.migi.libs.GreenRobotEventBus;
 
@@ -40,6 +41,21 @@ class NavigationPresenterImpl implements NavigationPresenter {
             case NavigationEvent.SESSION_CLOSE_SUCCESS:
                 goToLogin();
                 break;
+
+            case NavigationEvent.USER_ERROR:
+                //Si on a eu un probleme pour charger les info, on va re chercher
+                repository.chercherInformationUser();
+                break;
+
+            case NavigationEvent.USER_SUCCESS:
+                changerCredentiels(event.getUser());
+                break;
+        }
+    }
+
+    private void changerCredentiels(User user) {
+        if(view != null){
+            view.changerCredentiels(user);
         }
     }
 
@@ -54,5 +70,10 @@ class NavigationPresenterImpl implements NavigationPresenter {
     @Override
     public void closeSession() {
         repository.closeSession();
+    }
+
+    @Override
+    public void chercherInformationUser() {
+        repository.chercherInformationUser();
     }
 }
