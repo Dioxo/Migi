@@ -12,4 +12,6 @@ public interface NavigationPresenter {
 
 
     void closeSession();
+
+    void chercherInformationUser();
 }
