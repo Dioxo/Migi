@@ -1,5 +1,7 @@
 package dioxo.migi.listeTags;
 
+import android.util.Log;
+
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
@@ -54,6 +56,8 @@ class TagsPresenterImpl implements TagsPresenter {
 
     @Override
     public void chercherTags() {
+
+        Log.i("Tag", "chercher tags");
         repository.chercherTags();
     }
 
