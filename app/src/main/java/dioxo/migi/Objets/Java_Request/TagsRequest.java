@@ -1,6 +1,7 @@
 package dioxo.migi.Objets.Java_Request;
 
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Response;
@@ -24,6 +25,7 @@ public class TagsRequest extends StringRequest {
         //parametres.put("password",password);
         SharedPreferences settings = ApplicationContextProvider.getContext().getSharedPreferences(Constantes.ID_USER, 0);
         String id_user = settings.getString(Constantes.ID_USER,null);
+        Log.i("Tag", "id User " + id_user);
 
         parametres.put(Constantes.ID_USER,id_user);
     }

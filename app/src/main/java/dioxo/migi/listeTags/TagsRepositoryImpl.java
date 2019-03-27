@@ -1,5 +1,7 @@
 package dioxo.migi.listeTags;
 
+import android.util.Log;
+
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
@@ -24,9 +26,13 @@ class TagsRepositoryImpl implements TagsRepository {
 
     @Override
     public void chercherTags() {
+        Log.i("Tag", "chercher tags Repository");
+
         Response.Listener<String>  success = response1 -> {
             try {
                 JSONArray array = new JSONArray(response1);
+                Log.i("Tag", "response Success " + response1);
+
                 ArrayList<String> tags = fromJson(array);
 
                 TagsEvent event = new TagsEvent(TagsEvent.SUCESS, tags);
