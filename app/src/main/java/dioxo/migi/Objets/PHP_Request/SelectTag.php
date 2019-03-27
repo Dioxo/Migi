@@ -16,7 +16,7 @@ if ($result->num_rows > 0) {
         $res += array("Result" => "Error");
 }
 
-if(!isset( $$Notes_id )){
+if(!isset( $Notes_id )){
   echo json_encode(array());
 }else{
   echo json_encode($Notes_id);
