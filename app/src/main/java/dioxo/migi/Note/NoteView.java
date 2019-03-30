@@ -21,5 +21,5 @@ public interface NoteView {
     void delete(boolean success);
     void reviserNote(boolean success);
 
-    void refreshTags(String tagName);
+    void ajouterTagAuView(String tagName);
 }

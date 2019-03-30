@@ -159,6 +159,15 @@ public class NoteActivity extends AppCompatActivity implements NoteView, TagDial
                 TextView textTag = tags_corp.findViewById(R.id.txt_Tag);
                 textTag.setText(note.getTags().get(i).getTextTag());
 
+                textTag.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View v) {
+                        effacerTag(textTag.getText().toString());
+                        tagsContenier.removeView(tags_corp);
+                        return false;
+                    }
+                });
+
                 tagsContenier.addView(tags_corp);
             }
 
@@ -168,6 +177,11 @@ public class NoteActivity extends AppCompatActivity implements NoteView, TagDial
         }
 
     }
+
+    private void effacerTag(String textTag) {
+        presenter.effacerTag(textTag);
+    }
+
 
     private void storeActualNoteId(String idNote) {
         SharedPreferences settings = getApplicationContext().getSharedPreferences(Constantes.NOTE_ACTUAL, 0);
@@ -314,7 +328,7 @@ public class NoteActivity extends AppCompatActivity implements NoteView, TagDial
 
 
     @Override
-    public void refreshTags(String tagName) {
+    public void ajouterTagAuView(String tagName) {
         LinearLayout tags_corp = (LinearLayout) LayoutInflater.from(ApplicationContextProvider.getContext()).inflate(R.layout.tags_contenier, null);
         TextView textTag = tags_corp.findViewById(R.id.txt_Tag);
         textTag.setText(tagName);
@@ -363,7 +377,7 @@ public class NoteActivity extends AppCompatActivity implements NoteView, TagDial
     }
 
     @Override
-    public void applyText(String tagNom) {
+    public void ajouterTag(String tagNom) {
         if(noteAlreadyExist) {
             presenter.ajouterTag(tagNom);
         }
@@ -371,7 +385,7 @@ public class NoteActivity extends AppCompatActivity implements NoteView, TagDial
 
 
     @Override
-    public void applicarTexto(String qualification) {
+    public void reviserNote(String qualification) {
         if(noteAlreadyExist){
             Log.i("Note qualification", qualification);
             presenter.reviserNote(qualification);

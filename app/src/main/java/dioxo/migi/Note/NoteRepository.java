@@ -10,4 +10,6 @@ public interface NoteRepository {
     void ajouterTag(String tagNom);
 
     void reviserNote(String note);
+
+    void effacerTag(String textTag);
 }
