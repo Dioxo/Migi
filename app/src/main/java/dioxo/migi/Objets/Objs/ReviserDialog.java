@@ -40,7 +40,7 @@ public class ReviserDialog extends AppCompatDialogFragment {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         String tag = note_revision.getText().toString();
-                        listener.applicarTexto(tag);
+                        listener.reviserNote(tag);
                     }
                 });
         note_revision = (EditText)view.findViewById(R.id.note_revision);
@@ -60,6 +60,6 @@ public class ReviserDialog extends AppCompatDialogFragment {
     }
 
     public interface ReviserDialogListener{
-        void applicarTexto(String qualification);
+        void reviserNote(String qualification);
     }
 }

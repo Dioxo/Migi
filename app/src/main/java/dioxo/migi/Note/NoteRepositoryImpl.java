@@ -12,6 +12,7 @@ import org.json.JSONObject;
 
 import dioxo.migi.Constantes;
 import dioxo.migi.Objets.Java_Request.DeleteNote;
+import dioxo.migi.Objets.Java_Request.DeleteTag;
 import dioxo.migi.Objets.Java_Request.InsertNote;
 import dioxo.migi.Objets.Java_Request.InsertTag;
 import dioxo.migi.Objets.Java_Request.ReviserNote;
@@ -178,5 +179,34 @@ class NoteRepositoryImpl implements NoteRepository {
         RequestQueue request = Volley.newRequestQueue(ApplicationContextProvider.getContext());
         request.add(reviserNote);
 
+    }
+
+    @Override
+    public void effacerTag(String textTag) {
+        Response.Listener<String> success = response -> {
+            try {
+                JSONObject jsonObject = new JSONObject(response);
+                NoteEvent noteEvent;
+
+                // si l'actualisation est effectuée
+                if(jsonObject.getBoolean("result")){
+                    Log.i("Note", "result " + jsonObject.getBoolean("result") );
+                    noteEvent = new NoteEvent(NoteEvent.DELETE_TAG_SUCCESS);
+                }else{
+                    Log.i("Note", "result " + jsonObject.getBoolean("result") );
+                    noteEvent = new NoteEvent(NoteEvent.DELETE_TAG_ERROR);
+                }
+
+                eventBus.post(noteEvent);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        };
+
+
+        DeleteTag deleteTag = new DeleteTag(success,textTag);
+        RequestQueue request = Volley.newRequestQueue(ApplicationContextProvider.getContext());
+        request.add(deleteTag);
     }
 }

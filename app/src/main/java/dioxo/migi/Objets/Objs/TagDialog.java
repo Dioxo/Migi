@@ -40,7 +40,7 @@ public class TagDialog extends AppCompatDialogFragment {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         String tag = tagNom.getText().toString();
-                        listener.applyText(tag);
+                        listener.ajouterTag(tag);
                     }
                 });
         tagNom = (EditText)view.findViewById(R.id.edit_tag);
@@ -60,6 +60,6 @@ public class TagDialog extends AppCompatDialogFragment {
     }
 
     public interface TagDialogListener{
-        void applyText(String tagNom);
+        void ajouterTag(String tagNom);
     }
 }
