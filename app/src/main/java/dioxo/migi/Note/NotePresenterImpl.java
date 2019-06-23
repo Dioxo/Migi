@@ -59,7 +59,7 @@ class NotePresenterImpl implements NotePresenter {
 
                 case NoteEvent.TAG_INSERT_SUCCESS:
                     view.insert(true);
-                    view.refreshTags(event.getMessage());
+                    view.ajouterTagAuView(event.getMessage());
                     break;
 
                 case NoteEvent.REVISER_NOTE_SUCCESS:
@@ -71,6 +71,12 @@ class NotePresenterImpl implements NotePresenter {
                     view.reviserNote(false);
                     break;
 
+                case NoteEvent.DELETE_TAG_ERROR:
+                    view.reviserNote(false);
+                    break;
+                case NoteEvent.DELETE_TAG_SUCCESS:
+                    view.reviserNote(true);
+                    break;
 
             }
 
@@ -103,6 +109,11 @@ class NotePresenterImpl implements NotePresenter {
     @Override
     public void reviserNote(String qualification) {
         noteRepository.reviserNote(qualification);
+    }
+
+    @Override
+    public void effacerTag(String textTag) {
+        noteRepository.effacerTag(textTag);
     }
 
     @Override

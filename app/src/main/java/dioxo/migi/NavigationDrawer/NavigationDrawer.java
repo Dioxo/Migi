@@ -22,11 +22,13 @@ import dioxo.migi.Authentication.AuthenticationActivity;
 import dioxo.migi.ListerTaches.TachesFragment;
 import dioxo.migi.NavigationDrawer.InterfaceCommunicationWFragments.OnButtonPressListener;
 import dioxo.migi.Note.NoteActivity;
+import dioxo.migi.Objets.Objs.User;
 import dioxo.migi.R;
 import dioxo.migi.listeTags.TagsFragment;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import java.io.Serializable;
 
@@ -42,6 +44,9 @@ public class NavigationDrawer extends AppCompatActivity
     private RecyclerView.LayoutManager mLayoutManager;
     private NavigationPresenter presenter;
 
+    Toolbar toolbar;
+    TextView nickname;
+    TextView email;
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -52,7 +57,7 @@ public class NavigationDrawer extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation_drawer);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -66,6 +71,7 @@ public class NavigationDrawer extends AppCompatActivity
         });
 
 
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -75,11 +81,16 @@ public class NavigationDrawer extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        View headerView = navigationView.getHeaderView(0);
+        nickname = (TextView) headerView.findViewById(R.id.txtUser);
+        email = (TextView) headerView.findViewById(R.id.txtEmailUser);
 
         //Creation presenter
         presenter = new NavigationPresenterImpl(this);
         presenter.onCreate();
         ouvrirFragmentTachesParDefault();
+
+        chercherInformationUser();
     }
 
     private void ouvrirFragmentTachesParDefault() {
@@ -189,13 +200,25 @@ public class NavigationDrawer extends AppCompatActivity
     }
 
     @Override
+    public void chercherInformationUser() {
+        presenter.chercherInformationUser();
+    }
+
+    @Override
+    public void changerCredentiels(User user) {
+
+        nickname.setText(user.getNickName());
+        email.setText(user.getEmail());
+    }
+
+    @Override
     public void onButtonPressed(String msg) {
 
         TachesFragment fragment = new TachesFragment();
 
         fragment.ResearchByTaches = false;
 
-        Log.i("TACHES" , "VALEUR DE BOOLEAN navigation " + fragment.ResearchByTaches );
+        //Log.i("TACHES" , "VALEUR DE BOOLEAN navigation " + fragment.ResearchByTaches );
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.screen_area, fragment)
                 .commit();

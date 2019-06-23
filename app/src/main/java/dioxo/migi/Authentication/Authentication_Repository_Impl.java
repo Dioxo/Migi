@@ -13,8 +13,13 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
+
 import dioxo.migi.Constantes;
 import dioxo.migi.Objets.Java_Request.LoginRequest;
+import dioxo.migi.Objets.Objs.Seguridad.Encriptar;
+import dioxo.migi.Objets.Objs.Seguridad.Encriptar_Interface;
 import dioxo.migi.libs.ApplicationContextProvider;
 import dioxo.migi.libs.EventBus;
 import dioxo.migi.libs.GreenRobotEventBus;
@@ -43,16 +48,25 @@ public class Authentication_Repository_Impl implements Authentication_Repository
 
                 Log.i("Login","JSON mdp : " + jsonObject);
                 String password = jsonObject.getString("password");
-                if(password.equals(mdp)){
-                    storeUser_id(jsonObject.getString("id_user"));
-                    Log.i("Login","ok");
-                    event = new Authentication_Event(Authentication_Event.AUTHENTICATION_OKAY);
-                }else{
-                    Log.i("Login","error");
+
+                Encriptar_Interface encriptar = new Encriptar();
+
+
+                try {
+                    if(encriptar.validatePassword(mdp, password)){
+                        storeUser_id(jsonObject.getString("id_user"));
+                        Log.i("Login","ok");
+                        event = new Authentication_Event(Authentication_Event.AUTHENTICATION_OKAY);
+                    }else{
+                        Log.i("Login","error");
+                        event = new  Authentication_Event(Authentication_Event.AUTHENTICATION_ERROR,
+                                Authentication_Event.AUTHENTICATION_ERROR_MESSAGE );
+                    }
+                } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
+                    e.printStackTrace();
                     event = new  Authentication_Event(Authentication_Event.AUTHENTICATION_ERROR,
                             Authentication_Event.AUTHENTICATION_ERROR_MESSAGE );
                 }
-                Log.i("Login" , "Event " +  event.toString());
                 eventBus.post(event);
 
             } catch (JSONException e) {

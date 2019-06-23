@@ -18,6 +18,8 @@ class NoteEvent {
 
     public static final int REVISER_NOTE_SUCCESS = 8;
     public static final int REVISER_NOTE_ERROR = 9;
+    public static final int DELETE_TAG_SUCCESS = 10;
+    public static final int DELETE_TAG_ERROR = 11;
 
     private int eventType;
     private String message;

@@ -22,4 +22,6 @@ public interface NotePresenter {
     void ajouterTag(String tagNom);
 
     void reviserNote(String qualification);
+
+    void effacerTag(String textTag);
 }
