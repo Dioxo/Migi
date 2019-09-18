@@ -1,7 +1,7 @@
 # Migi
 
-Migi is a system that allows you to take notes of whatever you need at all times, plus it has a system that notifies you when you are more likely to forget any of these notes.
-This project uses the theory of the spaced review so that you get the best results when studying and do not have to worry about forgetting something.
+Make studies a little easier with this TAKING NOTES APPLICATION, with its notification system that tells you when you are more likely to forget any of these notes.
+Based on the theory of 'Spaced Repetition' so that you get the best results when studying and do not have to worry about forgetting something
 
 *For more information about:*
 
